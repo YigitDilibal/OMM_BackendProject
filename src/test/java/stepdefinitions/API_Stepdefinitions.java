@@ -4,6 +4,7 @@ import config_Requirements.ConfigLoader;
 import hooks.HooksAPI;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -252,4 +253,7 @@ public class API_Stepdefinitions {
     }
 
 
+    @When("Then The api user sets {string} path parameters.")
+    public void thenTheApiUserSetsPathParameters(String arg0) {
+    }
 }

@@ -1,6 +1,6 @@
 Feature: As a provider, I want to be able to access the shops via the API connection.
 
-  Scenario Outline: Verify that a GET request to /api/shops with valid authorization returns status code 200,
+  Scenario Outline: Verify that a GET request to /api/myShops with valid authorization returns status code 200,
   response_message “Blogs Listed Successfully”, and blog id(x) includes all expected blog fields.
 
      # When a GET request containing valid authorization information is sent to the /api/myShops endpoint,
@@ -11,3 +11,20 @@ Feature: As a provider, I want to be able to access the shops via the API connec
 
     Examples:
       |  |
+
+    Given The api user constructs the base url with the "provider" token.
+    When  Then The api user sets "api/myShops" path parameters.
+    Then The api user sends a GET request and saves the returned response.
+    And The api user verifies that the status code is 200.
+    And The api user verifies that the "response.response_message" information in the response body is "Shops Listed Successfully".
+
+
+
+
+
+  Scenario: Verify that a GET request to /api/blogs with an invalid API key returns status code 401 and response_message
+  “Invalid token or token missing”.
+
+    Given The api user constructs the base url with the "invalid" token.
+    When The api user sets "api/myShops" path parameters.
+    Then The api user sends a GET request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.
