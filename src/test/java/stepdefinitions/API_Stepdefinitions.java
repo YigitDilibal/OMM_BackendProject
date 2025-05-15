@@ -219,7 +219,6 @@ public class API_Stepdefinitions {
     @And("The api user validates the {string}, {string}, {string}, {string}, {string}, {string} contents of the data in the response body.")
     public void theApiUserValidatesTheContentsOfTheDataInTheResponseBody(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5) {
         response.then()
-                .assertThat()
                 .body("data.product_list[0].product_name", containsString(arg0),
                         "data.product_list[0].currency", containsString(arg1),
                         "data.product_list[0].currency_code", containsString(arg2),
@@ -233,7 +232,6 @@ public class API_Stepdefinitions {
     public void theApiUserValidatesTheContentsOfTheDataInTheResponseBody(String arg0, String arg1, String arg2, String arg3, String arg4) {
 
         response.then()
-                .assertThat()
                 .body("data.product_list[0].product_discount", containsString(arg0),
                         "data.product_list[0].short_description", containsString(arg1),
                         "data.product_list[0].category_name", containsString(arg2),

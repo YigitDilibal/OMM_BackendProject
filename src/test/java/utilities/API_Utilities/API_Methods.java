@@ -39,7 +39,7 @@ public class API_Methods {
         tempPath.deleteCharAt(tempPath.lastIndexOf("{"));
 
         fullPath = tempPath.toString();
-        System.out.println("fullPath = " + fullPath);
+        //System.out.println("fullPath = " + fullPath);
         System.out.println("id : " + id);
     }
 
