@@ -11,13 +11,12 @@ Feature: As a provider, I want to be able to access products via API connection.
 
     Given The api user constructs the base url with the "provider" token.
     Then The api user sets "api/myStaffs" path parameters.
-    And The api user prepares a GET request body for "<Id>" to send to the api myStaffs endpoint
-    When The api user sends a GET request with a body and saves the returned response.
-    Then The api user verifies that the status code is 200.
+    Then The api user sends a GET request and saves the returned response.
+    And The api user verifies that the status code is 200.
     And The api user verifies that the "response.response_message" information in the response body is "Staffs Listed Successfully".
     And The api user validates the "<provider_id>", "<first_name>", "<last_name>", "<country_code>", "<contact_no>", "<email>" contents of the data in the response body in mystaffs.
     And The api user validates the "<dob>", "<gender>", "<profile_img>", "<designation>" , "<exp_year>", "<exp_month>" ,"<status>" contents of the data in the response body.
 
     Examples:
-      |Id | provider_id | first_name | last_name| country_code | contact_no | email | dob | gender  | profile_img |designation | exp_year | exp_month | status |
-      | 50   | 4 | Thane Archer|  | 1| 2126547896  |thanearcher@gmail.com| 1989-06-15 | Male | https://qa.onlinemastermarket.com/ |     |   | 0 | Active |
+      | provider_id | first_name | last_name| country_code | contact_no | email | dob | gender  | profile_img |designation | exp_year | exp_month | status |
+      | 4 | Thane Archer|  | 1| 2126547896  |thanearcher@gmail.com| 1989-06-15 | Male | https://qa.onlinemastermarket.com/ |     |   | 0 | Active |

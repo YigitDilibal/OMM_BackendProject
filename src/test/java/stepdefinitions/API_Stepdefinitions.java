@@ -131,7 +131,7 @@ public class API_Stepdefinitions {
                 .body(jsonObjectRequest.toString())
                 .post(API_Methods.fullPath);
 
-        response.prettyPrint();
+      //  response.prettyPrint();
     }
 
     @Given("The api user prepares a post request body containing missing data to send to the api addBlog endpoint.")
@@ -169,7 +169,7 @@ public class API_Stepdefinitions {
                 .body(hashMapRequest)
                 .patch(API_Methods.fullPath);
 
-        response.prettyPrint();
+       // response.prettyPrint();
     }
 
     @Given("The api user verifies that the {string} information in the response body is the same as the id path parameter in the endpoint.")
@@ -278,18 +278,12 @@ public class API_Stepdefinitions {
         response.then()
                 .assertThat()
                 .body("data.staff_list[9].dob", containsString(arg0),
-                        "data.product_list[9].gender", containsString(arg1),
+                        "data.staff_list[9].gender", containsString(arg1),
                         "data.staff_list[9].profile_img", containsString(arg2),
                         "data.staff_list[9].designation", equalTo(arg3),
                         "data.staff_list[9].exp_year", equalTo(arg4),
                         "data.staff_list[9].exp_month", containsString(arg5),
                         "data.staff_list[9].status", containsString(arg6));
-    }
-
-    @And("The api user prepares a GET request body for {string} to send to the api myStaffs endpoint")
-    public void theApiUserPreparesAGETRequestBodyForToSendToTheApiMyStaffsEndpoint(String Id) {
-
-        jsonObjectRequest.put("Id",Id);
     }
 
 
