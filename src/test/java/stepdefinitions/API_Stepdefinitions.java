@@ -2,6 +2,7 @@ package stepdefinitions;
 
 import config_Requirements.ConfigLoader;
 import hooks.HooksAPI;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -44,7 +45,8 @@ public class API_Stepdefinitions {
                 .when()
                 .get(API_Methods.fullPath);
 
-        response.prettyPrint();
+        System.out.println(response.prettyPrint());
+
     }
 
     @Given("The api user verifies that the status code is {int}.")
@@ -125,7 +127,7 @@ public class API_Stepdefinitions {
                 .spec(HooksAPI.spec)
                 .contentType(ContentType.JSON)
                 .when()
-                .body(addBlogPojoRequest)
+                .body(jsonObjectRequest.toString())
                 .post(API_Methods.fullPath);
 
         response.prettyPrint();
@@ -206,5 +208,48 @@ public class API_Stepdefinitions {
                 .delete(API_Methods.fullPath);
         response.prettyPrint();
     }
+
+
+    @And("The api user prepares a GET request body for {string} to send to the api myProducts endpoint")
+    public void theApiUserPreparesAGETRequestBodyForToSendToTheApiMyProductsEndpoint(String shopId) {
+        jsonObjectRequest.put("shop_id",shopId);
+    }
+
+    @And("The api user validates the {string}, {string}, {string}, {string}, {string}, {string} contents of the data in the response body.")
+    public void theApiUserValidatesTheContentsOfTheDataInTheResponseBody(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5) {
+        response.then()
+                .assertThat()
+                .body("data.product_list[0].product_name", containsString(arg0),
+                        "data.product_list[0].currency", containsString(arg1),
+                        "data.product_list[0].currency_code", containsString(arg2),
+                        "data.product_list[0].product_currency", containsString(arg3),
+                        "data.product_list[0].product_price", containsString(arg4),
+                        "data.product_list[0].sale_price", containsString(arg5));
+
+    }
+
+    @And("The api user validates the {string}, {string}, {string}, {string}, {string} contents of the data in the response body.")
+    public void theApiUserValidatesTheContentsOfTheDataInTheResponseBody(String arg0, String arg1, String arg2, String arg3, String arg4) {
+
+        response.then()
+                .assertThat()
+                .body("data.product_list[0].product_discount", containsString(arg0),
+                        "data.product_list[0].short_description", containsString(arg1),
+                        "data.product_list[0].category_name", containsString(arg2),
+                        "data.product_list[0].subcategory_name", containsString(arg3),
+                        "data.product_list[0].product_image", containsString(arg4));
+
+    }
+
+    @Given("The api user sends a GET request with a body and saves the returned response.")
+    public void the_api_user_sends_a_get_request_with_a_body_and_saves_the_returned_response() {
+        response = given()
+                .spec(HooksAPI.spec)
+                .when()
+                .body(jsonObjectRequest.toString())
+                .get(API_Methods.fullPath);
+
+    }
+
 
 }
