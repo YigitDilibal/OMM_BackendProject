@@ -24,3 +24,30 @@ Feature: As a provider, I should be able to access the detailed information of t
 
 
 
+  Scenario: Verify that a GET request to /api/shop-details/12 without valid authorization and id returns status code 203 and
+  response_message “Id missing”.
+
+    Given The api user constructs the base url with the "provider" token.
+    When  The api user sets "/api/shop-details/< >" path parameters.
+    Then The api user sends a GET request and saves the returned response.
+    And The api user verifies that the status code is 203.
+    And The api user verifies that the "response.response_message" information in the response body is "Id missing".
+
+  Scenario: Verify that a GET request to /api/shop-details/12 with valid authorization and an unregistered id returns status
+  code 203 and response_message “No Details found”.
+
+    Given The api user constructs the base url with the "provider" token.
+    When  The api user sets "/api/shop-details/<1111>" path parameters.
+    Then The api user sends a GET request and saves the returned response.
+    And The api user verifies that the status code is 203.
+    And The api user verifies that the "response.response_message" information in the response body is "No Details found".
+
+   Scenario: Scenario: Verify that a GET request to /api/shop-details/12 with an invalid API key returns status code 401 and
+   response_message “Invalid token or token missing”.
+
+     Given The api user constructs the base url with the "invalid" token.
+     When The api user sets "/api/shop-details/12" path parameters.
+     Then The api user sends a GET request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.
+
+
+

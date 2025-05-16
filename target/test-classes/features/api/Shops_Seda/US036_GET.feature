@@ -19,9 +19,13 @@ Feature: As a provider, I want to be able to access the shops via the API connec
     And The api user validates the "<shop_code>", "<shop_name>", "<country_code>", "<tax_allow>", "<tax_number>", "<contact_no>" contents of the data in  response body
     And The api user validates the "<email>", "<address>", "<country_name>", "<state_name>", "<city_name>", "<postal_code>" contents of the data in  response body
 
+
     Examples:
       |shop_code|shop_name|country_code|tax_allow|tax_number|contact_no|email|address|country_name|state_name|city_name|postal_code|
       |SHOP4Q0CN5 |FixIt Pros|      |No      |null      |2587456321|info@fixit.com |7990 California City Blvd |USA (+1) |California  |California City |93505  |
+
+
+
 
   Scenario: Verify that a GET request to /api/blogs with an invalid API key returns status code 401 and response_message
   “Invalid token or token missing”.
