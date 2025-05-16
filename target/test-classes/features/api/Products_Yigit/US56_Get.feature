@@ -22,3 +22,39 @@ Feature: As a provider, I want to be able to access products via API connection.
     Examples:
   |shop_id|product_name|currency|currency_code|product_currency|product_price|sale_price|product_discount|short_description|category_name|subcategory_name|product_image|
   |11     |18v Cordless|$       |USD          |USD             |150          |150       |0               |The Flexiclick   |Repair Tools |Power Tools    |powertools2   |
+
+
+
+
+
+  Scenario: Verify that a GET request to api/myProducts with valid authorization and empty body returns status code 203,
+  response_message “shop_id is required.”
+
+    Given The api user constructs the base url with the "provider" token.
+    Then The api user sets "api/myProducts" path parameters.
+    And The api user sends a GET request and saves the returned response.
+    When The api user verifies that the status code is 203.
+    Then The api user verifies that the "response.response_message" information in the response body is "shop_id is required.".
+
+
+
+
+  Scenario: Verify that a GET request to api/myProducts with valid authorization and non-registered shop-id returns status code 203,
+  response_message “Id missing”
+
+    Given The api user constructs the base url with the "provider" token.
+    Then The api user sets "api/myProducts" path parameters.
+    And The api user prepares a GET request body for "1125" to send to the api myProducts endpoint
+    When The api user sends a GET request with a body and saves the returned response.
+    When The api user verifies that the status code is 203.
+    Then The api user verifies that the "response.response_message" information in the response body is "No shop this id or No product this shop.".
+
+
+
+
+  Scenario: Verify that a GET request to /api/blogs with an invalid API key returns status code 401 and response_message
+  “Invalid token or token missing”.
+
+    Given The api user constructs the base url with the "invalid" token.
+    When The api user sets "api/myProducts" path parameters.
+    Then The api user sends a GET request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.

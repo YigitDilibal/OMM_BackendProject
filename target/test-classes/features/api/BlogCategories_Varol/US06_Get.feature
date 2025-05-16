@@ -1,14 +1,13 @@
 Feature: As a provider, I want to be able to access blog categories via API connection.
 
-  Scenario Outline:
+  Scenario Outline: Verify that a GET request to /api/blogCategories with valid authorization and correct id returns status
+  code 200, response_message “Blog Categories Listed Successfully”, and that all expected blog categories fields are present in the response body.
 
   # When a GET request is sent to /api/blogCategories endpoint with valid authorization information, it should be verified that the status
   # code returned is 200 and the response_message in the response body is “Blog Categories Listed Successfully”.
 
   # The information returned in the response body for id(x) (lang_id, name, slug, description, keywords, category_order,
   # status, createdAt, createdBy, updatedAt, updatedBy) must be verified.
-
-
 
 
     Given The api user constructs the base url with the "provider" token.
@@ -24,5 +23,5 @@ Feature: As a provider, I want to be able to access blog categories via API conn
       |1      |Household|household|           |        |1             |1     |2022-10-03 19:57:19|1        |2024-06-28 23:15:56|1        |
 
 
-     # When a GET request is sent to /api/blogCategories endpoint with invalid (invalid API key) authorization information,
-  # it should be verified that the status code returned is 401 and the response_message in the response body is “Invalid token or token missing”.
+    # When a GET request is sent to /api/blogCategories endpoint with invalid (invalid API key) authorization information,
+    # it should be verified that the status code returned is 401 and the response_message in the response body is “Invalid token or token missing”.
