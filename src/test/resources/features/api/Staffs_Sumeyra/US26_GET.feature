@@ -20,3 +20,4 @@ Feature: As a provider, I want to be able to access products via API connection.
     Examples:
       | provider_id | first_name | last_name| country_code | contact_no | email | dob | gender  | profile_img |designation | exp_year | exp_month | status |
       | 4 | Thane Archer|  | 1| 2126547896  |thanearcher@gmail.com| 1989-06-15 | Male | https://qa.onlinemastermarket.com/ |     |   | 0 | Active |
+
