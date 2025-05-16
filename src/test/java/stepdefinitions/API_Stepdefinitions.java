@@ -252,8 +252,20 @@ public class API_Stepdefinitions {
 
 
     @When("Then The api user sets {string} path parameters.")
-    public void thenTheApiUserSetsPathParameters(String arg0) {
+    public void theApiUserSetsPathParameters(String pathParam) {
+        API_Methods.pathParam(pathParam);
     }
+
+    @And("The api user validates the {string}, {string}, {string}, {string}, {string}, {string} contents of the data in  response body")
+    public void theApiUserValidatesTheContentsOfTheDataInResponseBody(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5) {
+        response.then()
+                .assertThat()
+                .body("data.shop_list[0].shop_code", containsString(arg0),
+                        "data.shop_list[0].shop_name", containsString(arg1),
+                        "data.shop_list[0].country_code", containsString(arg2),
+                        "data.shop_list[0].tax_allow", containsString(arg3),
+                        "data.shop_list[0].tax_number", containsString(arg4),
+                         "data.shop_list[0].contact_no", containsString(arg5));
 
     @And("The api user validates the {string}, {string}, {string}, {string}, {string}, {string} contents of the data in the response body in mystaffs.")
     public void theApiUserValidatesTheContentsOfTheDataInTheResponseBodyInMystaffs(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5) {
@@ -282,7 +294,6 @@ public class API_Stepdefinitions {
                         "data.staff_list[9].exp_year", equalTo(arg4),
                         "data.staff_list[9].exp_month", containsString(arg5),
                         "data.staff_list[9].status", containsString(arg6));
-
 
     }
 
