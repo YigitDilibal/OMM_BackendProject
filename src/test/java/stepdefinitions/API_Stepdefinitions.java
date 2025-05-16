@@ -19,15 +19,15 @@ import java.util.HashMap;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-public abstract class API_Stepdefinitions {
-    Response response;
-    JsonPath jsonPath;
-    String exceptionMesaj;
-    ConfigLoader configLoader = new ConfigLoader();
-    JSONObject jsonObjectRequest = new JSONObject();
-    HashMap<String, Object> hashMapRequest = new HashMap<>();
-    TestData testData = new TestData();
-    AddBlogPojo addBlogPojoRequest;
+public class API_Stepdefinitions {
+    static Response response;
+    static JsonPath jsonPath;
+    static String exceptionMesaj;
+    static ConfigLoader configLoader = new ConfigLoader();
+    static JSONObject jsonObjectRequest = new JSONObject();
+    static HashMap<String, Object> hashMapRequest = new HashMap<>();
+    static TestData testData = new TestData();
+    static AddBlogPojo addBlogPojoRequest;
 
     @Given("The api user constructs the base url with the {string} token.")
     public void the_api_user_constructs_the_base_url_with_the_token(String userType) {
@@ -216,17 +216,7 @@ public abstract class API_Stepdefinitions {
         jsonObjectRequest.put("shop_id",shopId);
     }
 
-    @And("The api user validates the {string}, {string}, {string}, {string}, {string}, {string} contents of the data in the response body.")
-    public void theApiUserValidatesTheContentsOfTheDataInTheResponseBody(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5) {
-        response.then()
-                .body("data.product_list[0].product_name", containsString(arg0),
-                        "data.product_list[0].currency", containsString(arg1),
-                        "data.product_list[0].currency_code", containsString(arg2),
-                        "data.product_list[0].product_currency", containsString(arg3),
-                        "data.product_list[0].product_price", containsString(arg4),
-                        "data.product_list[0].sale_price", containsString(arg5));
 
-    }
 
     @And("The api user validates the {string}, {string}, {string}, {string}, {string} contents of the data in the response body.")
     public void theApiUserValidatesTheContentsOfTheDataInTheResponseBody(String arg0, String arg1, String arg2, String arg3, String arg4) {

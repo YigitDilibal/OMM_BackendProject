@@ -1,4 +1,4 @@
 package stepdefinitions;
 
-public class VarolStep extends API_Stepdefinitions{
+public class VarolStep {
 }
