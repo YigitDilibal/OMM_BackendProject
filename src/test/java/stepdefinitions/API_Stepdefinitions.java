@@ -19,7 +19,7 @@ import java.util.HashMap;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-public class API_Stepdefinitions {
+public abstract class API_Stepdefinitions {
     Response response;
     JsonPath jsonPath;
     String exceptionMesaj;
