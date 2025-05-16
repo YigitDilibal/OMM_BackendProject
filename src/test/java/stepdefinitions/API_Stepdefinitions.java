@@ -21,13 +21,13 @@ import static org.hamcrest.Matchers.*;
 
 public class API_Stepdefinitions {
     static Response response;
-    JsonPath jsonPath;
-    String exceptionMesaj;
-    ConfigLoader configLoader = new ConfigLoader();
-    JSONObject jsonObjectRequest = new JSONObject();
-    HashMap<String, Object> hashMapRequest = new HashMap<>();
-    TestData testData = new TestData();
-    AddBlogPojo addBlogPojoRequest;
+    static JsonPath jsonPath;
+    static String exceptionMesaj;
+    static ConfigLoader configLoader = new ConfigLoader();
+    static JSONObject jsonObjectRequest = new JSONObject();
+    static HashMap<String, Object> hashMapRequest = new HashMap<>();
+    static TestData testData = new TestData();
+    static AddBlogPojo addBlogPojoRequest;
 
     @Given("The api user constructs the base url with the {string} token.")
     public void the_api_user_constructs_the_base_url_with_the_token(String userType) {
