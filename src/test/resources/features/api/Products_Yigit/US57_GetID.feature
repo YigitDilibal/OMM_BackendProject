@@ -15,10 +15,12 @@ Feature: As a provider, I must be able to access detailed information about the 
     Then The api user sets "api/product-details/<id>" path parameters.
     And The api user sends a GET request and saves the returned response.
     Then The api user verifies that the status code is 200.
-    And The api user verifies that the "response.response_message" information in the response body is "Products Listed Successfully".
-    And The api user validates the "<product_name>", "<currency>", "<currency_code>", "<product_currency>", "<product_price>", "<sale_price>" contents of the data in the response body.
-    And The api user validates the "<product_discount>", "<short_description>", "<category_name>", "<subcategory_name>", "<product_image>" contents of the data in the response body.
+    And The api user verifies that the "response.response_message" information in the response body is "Product Details".
+    And The api user validates the "<id>", "<user_id>", "<manufactured_by>", "<shop_id>", "<category>", "<subcategory>" contents of the data in the response bodyq.
+    And The api user validates the "<product_name>", "<unit>", "<unit_name>", "<unit_value>", "<currency>" contents of the data in the response bodyw.
+    And The api user validates the "<currency_code>", "<prices>", "<sales_price>", "<product_discount>", "<short_description>", "<category_name>" contents of the data in the response bodye.
+    And The api user validates the "<subcategory_name>", "<shop_name>", "<price>", "<sale_price>", "<discount>", "<description>" contents of the data in the response bodyr.
 
     Examples:
-      |id     |product_name|currency|currency_code|product_currency|product_price|sale_price|product_discount|short_description|category_name|subcategory_name|product_image|
-      |5      |18v Cordless|$       |USD          |USD             |150          |150       |0               |The Flexiclick   |Repair Tools |Power Tools    |powertools2   |
+      |id |user_id|manufactured_by|shop_id|category|subcategory|product_name|unit|unit_name|unit_value|currency|currency_code|prices     |sales_price|product_discount|short_description|category_name|subcategory_name|shop_name|price|sale_price|discount|description|
+      |5  |4      |QuickHand Solut|11     |3       |2          |18v Cordless|1   |pc       |49        |$       |USD          |150        |150        |0               |The Flexiclick   |Repair Tools |Power Tools     |QuickHand|150  |150       |0       |interchangeable|

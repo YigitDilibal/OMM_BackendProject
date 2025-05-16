@@ -46,7 +46,7 @@ public class API_Stepdefinitions {
                 .when()
                 .get(API_Methods.fullPath);
 
-        System.out.println(response.prettyPrint());
+        // System.out.println(response.prettyPrint());
 
     }
 
@@ -218,17 +218,7 @@ public class API_Stepdefinitions {
 
 
 
-    @And("The api user validates the {string}, {string}, {string}, {string}, {string} contents of the data in the response body.")
-    public void theApiUserValidatesTheContentsOfTheDataInTheResponseBody(String arg0, String arg1, String arg2, String arg3, String arg4) {
 
-        response.then()
-                .body("data.product_list[0].product_discount", containsString(arg0),
-                        "data.product_list[0].short_description", containsString(arg1),
-                        "data.product_list[0].category_name", containsString(arg2),
-                        "data.product_list[0].subcategory_name", containsString(arg3),
-                        "data.product_list[0].product_image", containsString(arg4));
-
-    }
 
     @Given("The api user sends a GET request with a body and saves the returned response.")
     public void the_api_user_sends_a_get_request_with_a_body_and_saves_the_returned_response() {
