@@ -1,9 +1,7 @@
 Feature: As a provider, I want to be able to access products via API connection.
 
   Scenario Outline: Verify that a GET request to /api/myProducts with valid authorization returns status code 200,
-
   response_message "Products Listed Successfully", and id(5) includes all expected Products fields.
-
 
   # When a GET body containing valid authorization information and correct data (shop_id) is sent to the /api/myProducts endpoint, it must be verified
   # that the returned status code is 200 and the response_message information in the response body is "Products Listed Successfully".

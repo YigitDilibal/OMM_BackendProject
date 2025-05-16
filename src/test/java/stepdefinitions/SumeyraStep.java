@@ -1,4 +1,4 @@
 package stepdefinitions;
 
-public class SumeyraStep extends API_Stepdefinitions{
+public class SumeyraStep {
 }

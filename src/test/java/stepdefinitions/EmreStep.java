@@ -1,4 +1,4 @@
 package stepdefinitions;
 
-public class EmreStep extends API_Stepdefinitions{
+public class EmreStep {
 }
