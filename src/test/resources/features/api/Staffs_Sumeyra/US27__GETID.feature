@@ -1,4 +1,4 @@
-Feature: As a provider, I should be able to access the detailed information of the shop with the specified id number via the API connection.
+Feature: As a provider, I should be able to access the detailed information of the staff with the specified id number via API connection.
 
   Scenario Outline:  Verify that a GET request to api/myStaffs/{id} with valid authorization returns status code 200,
   response_message "Shops Listed Successfully", and id(41) includes all expected staff fields.

@@ -1,9 +1,9 @@
 package stepdefinitions;
 
-import io.cucumber.java.en.And;
+import io.cucumber.java.en.*;
 
 import static org.hamcrest.Matchers.*;
-import static stepdefinitions.API_Stepdefinitions.response;
+import static stepdefinitions.API_Stepdefinitions.*;
 
 public class SumeyraStep {
 
@@ -62,6 +62,76 @@ public class SumeyraStep {
                         "data[0].gender", containsString(arg3));
 
         }
+
+    @Given("The api user prepares a post request body to send to the api addStaff endpoint")
+    public void the_api_user_prepares_a_post_request_body_to_send_to_the_api_add_staffs_endpoint() {
+        /*
+     {
+"firstname":"Marc Edmont",
+"mobileno" :"3698521478965",
+"email":"mrtin@gmail.com",
+"gender":"Male",
+"dob":"1985-04-17",
+"shop_id":15,
+"about_emp":"About Martin"
 }
+         */
+        jsonObjectRequest.put("firstname", "Marc Edmont");
+        jsonObjectRequest.put("mobileno", "3698521478965");
+        jsonObjectRequest.put("email", "mrtin@gmail.com");
+        jsonObjectRequest.put("gender", "Male");
+        jsonObjectRequest.put("dob", "1985-04-17");
+        jsonObjectRequest.put("shop_id", 15);
+        jsonObjectRequest.put("about_emp", "About Martin");
+       // System.out.println("Post Body : " + jsonObjectRequest);
+    }
+
+    @And("The api user prepares a post request body containing missing data to send to the api addStaff endpoint.")
+    public void theApiUserPreparesAPostRequestBodyContainingMissingDataToSendToTheApiAddStaffEndpoint() {
+
+
+              /*
+ {
+"firstname":"Marc Edmont",
+"mobileno" :"3698521478965",
+"email":"mrtin@gmail.com",
+"gender":"Male"
+}
+         */
+
+        hashMapRequest.put("firstname", "Marc Edmont");
+        hashMapRequest.put("mobileno", "3698521478965");
+        hashMapRequest.put("email", "mrtin@gmail.com");
+        hashMapRequest.put("gender", "Male");
+     //   System.out.println("Post Body : " + hashMapRequest);
+    }
+
+    @And("The api user prepares a post request without any data to send to the api addStaff endpoint.")
+    public void theApiUserPreparesAPostRequestWithoutAnyDataToSendToTheApiAddStaffEndpoint() {
+    }
+
+    @And("The api user prepares a patch request body to send to the api editStaff endpoint")
+    public void theApiUserPreparesAPatchRequestBodyToSendToTheApiEditStaffEndpoint() {
+            /*
+            {
+"firstname":"Madame Edward",
+"mobileno" :"3698521478965",
+"email":"mdame@gmail.com",
+"gender":"Female",
+"shop_id":26,
+"about_emp":"About Madame"
+}
+             */
+
+        hashMapRequest.put("firstname", "Madame Edward");
+        hashMapRequest.put("mobileno", "3698521478965");
+        hashMapRequest.put("email", "mdame@gmail.com");
+        hashMapRequest.put("gender", "Female");
+        hashMapRequest.put("gender", 26);
+        hashMapRequest.put("gender", "About Madame");
+
+    }
+}
+
 
 
