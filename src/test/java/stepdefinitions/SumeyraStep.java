@@ -61,7 +61,6 @@ public class SumeyraStep {
                         "data[0].dob", equalTo(arg2),
                         "data[0].gender", containsString(arg3));
 
-
         }
 }
 

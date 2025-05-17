@@ -17,7 +17,6 @@ Feature: As a provider, I should be able to access the detailed information of t
     And The api user validates the "<id>", "<provider_id>", "<first_name>", "<last_name>", "<country_code>", "<contact_no>" contents of the data in  response body with id
     And The api user validates the "<email>", "<password>", "<dob>", "<gender>" contents of the data in  response body with id
 
-
     Examples:
       |id  |provider_id |first_name  |last_name|country_code|contact_no  | email           |password  |dob       |gender|
       |41  |4           |Marcus Hayes|          |1           |2157893265  |marcus@gmail.com|          |1984-10-19|Male  |
