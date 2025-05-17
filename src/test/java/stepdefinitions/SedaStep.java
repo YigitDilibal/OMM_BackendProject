@@ -2,6 +2,9 @@ package stepdefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.specification.RequestSpecification;
 
 import static org.hamcrest.Matchers.*;
 import static stepdefinitions.API_Stepdefinitions.jsonObjectRequest;
@@ -43,9 +46,40 @@ public class SedaStep {
     @Then("The api user prepares a post request without any data to send to the api addShop endpoint.")
     public void theApiUserPreparesAPostRequestWithoutAnyDataToSendToTheApiAddShopEndpoint() {
 
+        String emptyJsonBody = "{}";
+
+        RequestSpecification request = RestAssured.given()
+                .contentType(ContentType.JSON)
+                .body(emptyJsonBody);
+
         String responseMessage = response.jsonPath().getString("response.response_message");
 
 
     }
-}
+
+    @Then("The api user prepares a patch request body to send to the api editShop endpoint")
+    public void theApiUserPreparesAPatchRequestBodyToSendToTheApiEditShopEndpoint() {
+
+
+        String responseMessage = response.jsonPath().getString("response.response_message");
+
+    }
+
+
+    @Then("The api user prepares a patch request that does not contain any data to send to the api editShop endpoint.")
+    public void theApiUserPreparesAPatchRequestThatDoesNotContainAnyDataToSendToTheApiEditShopEndpoint() {
+
+        String emptyJsonBody = "{}";
+
+        RequestSpecification request = RestAssured.given()
+                .contentType(ContentType.JSON)
+                .body(emptyJsonBody);
+
+
+
+    }
+
+
+    }
+
 
