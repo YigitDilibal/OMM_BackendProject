@@ -61,6 +61,7 @@ public class SedaStep {
     public void theApiUserPreparesAPatchRequestBodyToSendToTheApiEditShopEndpoint() {
 
 
+
         String responseMessage = response.jsonPath().getString("response.response_message");
 
     }
@@ -80,6 +81,7 @@ public class SedaStep {
     }
 
 
-    }
+
+}
 
 

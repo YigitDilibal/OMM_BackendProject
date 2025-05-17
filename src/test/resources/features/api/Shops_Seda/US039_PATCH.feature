@@ -56,9 +56,35 @@ and non-existent id returns status code 203 and response_message “Failed to up
   And The api user verifies that the status code is 203.
   And The api user verifies that the "response.response_message" information in the response body is "Failed to update shop.İnvalid id.".
 
+  Scenario: Verify that a PATCH request to /api/editShop/{id}  with an invalid API key, correct id, and corect data
+  returns status code 401 and response_message “Invalid token or token missing”.
 
+  # When sending a PATCH body with invalid (invalid API key) authorization information and correct (id) and correct data
+  # to /api/editShop/{id} endpoint, it should be verified that the status code returned is 401 and the response_message in the response body is “Invalid token or token missing”.
 
+  Given The api user constructs the base url with the "invalid" token.
+  When The api user sets "api/editShop/94" path parameters.
+  Then The api user prepares a patch request body to send to the api editShop endpoint
+  And The api user sends a PATCH request and saves the returned response.
+  And The api user verifies that the status code is 401.
+  And The api user verifies that the "response.response_message" information in the response body is "Invalid token or token missing".
 
+  Scenario Outline: Verify that the updated shop is successfully modified via API by sending a GET request to /api/editShop/{id}
+  using the updated_shop_id returned in the PATCH response.
+
+   # Verify that the updated_shop_id in the response body returned from the /api/editShop/{id} endpoint is the same as the id path parameter in the /api/editShop/{id} endpoint.
+
+   # "The shop record that is requested to be updated through the API should be verified that it has been updated through the API.
+   #(It can be verified that the record has been updated by sending a GET request to the /api/shop-details/{id} endpoint with the updated_shop_id returned in the response body)."
+
+    Given The api user constructs the base url with the "provider" token.
+    When The api user sets "api/shop-details/<id>" path parameters.
+    Then  The api user sends a GET request and saves the returned response.
+    And The api user verifies that the content information is "Content"
+
+    Examples:
+      | id |
+      | 94 |
 
 
 
