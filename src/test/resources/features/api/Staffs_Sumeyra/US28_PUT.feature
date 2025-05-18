@@ -49,24 +49,22 @@ Feature: As a provider, I want to be able to create a new staff record via API c
     And The api user sets "api/addStaff" path parameters.
     And The api user prepares a post request body to send to the api addStaff endpoint
     When The api user sends a POST request and saves the returned response.
-    And The api user verifies that the status code is 401.
+    Then The api user verifies that the status code is 401.
     Then The api user verifies that the "response.response_message" information in the response body is "Invalid token or token missing".
 
     # "The new staff record to be created from the API must be verified from the API.
-    #(With the added_staff_id returned in the response body, it can be verified that a record was created by sending a GET request to the /api/staff-detail/{id} endpoint.)"
+    # (With the added_staff_id returned in the response body, it can be verified that a record was created by sending a GET request to the /api/staff-detail/{id} endpoint.)"
 
-  Scenario Outline: Verify that the newly created blog via /api/addBlog is successfully created by sending a GET request
+  #  /api/staff-detail/{id}  UNKNOWN MEETHOD !!
+  Scenario Outline: Verify that the newly created blog via /api/addStaff is successfully created by sending a GET request
   to /api/staff-detail/{id} using the added_staff_id returned in the POST response.
 
-    * The api user constructs the base url with the "provider" token.
-    # Api kullanicisi "provider" token ile base urli olusturur
-    * The api user sets "api/staff-detail/<id>" path parameters.
-    # Api kullanicisi "api/blogs" path parametrelerini olusturur
-    * The api user sends a GET request and saves the returned response.
-    # Api kullanicisi GET request gonderir ve donen responsei kaydeder
-    * The api user verifies that the status code is 200.
-    # Api kullanicisi status codeun 200 oldugunu dogrular
+    Given The api user constructs the base url with the "provider" token.
+    And The api user sets "api/staff-detail/<id>" path parameters.
+    And The api user prepares a post request body to send to the api addStaff endpoint for newly added staff
+    And The api user sends a GET request and saves the returned response.
+    Then The api user verifies that the status code is 200.
 
     Examples:
       | id |
-      | 89 |
+      | 177 |

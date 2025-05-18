@@ -1,7 +1,11 @@
 package stepdefinitions;
 
+import hooks.HooksAPI;
 import io.cucumber.java.en.*;
+import org.junit.Assert;
+import utilities.API_Utilities.API_Methods;
 
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 import static stepdefinitions.API_Stepdefinitions.*;
 
@@ -127,10 +131,77 @@ public class SumeyraStep {
         hashMapRequest.put("mobileno", "3698521478965");
         hashMapRequest.put("email", "mdame@gmail.com");
         hashMapRequest.put("gender", "Female");
-        hashMapRequest.put("gender", 26);
-        hashMapRequest.put("gender", "About Madame");
+        hashMapRequest.put("shop_id", 26);
+        hashMapRequest.put("about_emp", "About Madame");
 
     }
+
+    @And("The api user prepares a patch request that does not contain any data to send to the api editStaff endpoint.")
+    public void theApiUserPreparesAPatchRequestThatDoesNotContainAnyDataToSendToTheApiEditStaffEndpoint() {
+    }
+
+    @And("The api user prepares a patch request body and send to the api editStaff endpoint")
+    public void theApiUserPreparesAPatchRequestBodyAndSendToTheApiEditStaffEndpoint() {
+
+            /*
+            {
+"firstname":"Marc Edmont  Updated",
+"mobileno" :"3698521478965",
+"email":"mrtin@gmail.com",
+"gender":"Male",
+"shop_id":15,
+"about_emp":"About Martin"
+}
+             */
+
+        hashMapRequest.put("firstname", "Marc Edmont  Updated");
+        hashMapRequest.put("mobileno", "3698521478965");
+        hashMapRequest.put("email", "mrtin@gmail.com");
+        hashMapRequest.put("gender", "Male");
+        hashMapRequest.put("shop_id", 15);
+        hashMapRequest.put("about_emp", "About Martin");
+
+    }
+
+    @And("The api user prepares a part of patch request body to send to the api editStaff endpoint")
+    public void theApiUserPreparesAPartOfPatchRequestBodyToSendToTheApiEditStaffEndpoint() {
+
+            /*
+            {
+"firstname":"Marc Edmont  Updated2",
+"mobileno" :"3698521478965"
+
+}
+             */
+        hashMapRequest.put("firstname", "Marc Edmont  Updated2");
+        hashMapRequest.put("mobileno", "3698521478965");
+    }
+
+    @And("The api user prepares a post request body to send to the api addStaff endpoint for newly added staff")
+    public void theApiUserPreparesAPostRequestBodyToSendToTheApiAddStaffEndpointForNewlyAddedStaff() {
+
+        /*
+        {
+"firstname":"Marc Edmont",
+"mobileno" :"3698521478965",
+"email":"mrtin@gmail.com",
+"gender":"Male",
+"dob":"1985-04-17",
+"shop_id":15,
+"about_emp":"About Martin"
+}
+         */
+
+        hashMapRequest.put("firstname", "Marc Edmont");
+        hashMapRequest.put("mobileno", "3698521478965");
+        hashMapRequest.put("email", "mrtin@gmail.com");
+        hashMapRequest.put("gender", "1985-04-17");
+        hashMapRequest.put("dob", "Male");
+        hashMapRequest.put("shop_id", 15);
+        hashMapRequest.put("about_emp", "About Martin");
+    }
+
+
 }
 
 
