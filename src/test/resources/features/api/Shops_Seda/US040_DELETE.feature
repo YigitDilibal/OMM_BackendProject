@@ -53,9 +53,18 @@ response_message “Invalid token or token missing”.
  And The api user verifies that the status code is 401.
  And The api user verifies that the "response.response_message" information in the response body is "Invalid token or token missing".
 
+Scenario: Verify that the deleted shop is successfully removed via API by sending a GET request to /api/shop/{id}
+using the deleted_shop_id returned in the DELETE response.
 
+#Verify that the deleted_shop_id in the response body returned from the /api/deleteShop/{id} endpoint is the same as the id path parameter in the /api/deleteShop/{id} endpoint.
 
+#"The deletion of the shop record that is requested to be deleted from the API must be verified from the API.
+#(It can be verified that the record has been deleted by sending a GET request to the /api/shop-details/{id} endpoint with the deleted_shop_id returned in the response body)."
 
+ Given The api user constructs the base url with the "provider" token.
+ When The api user sets "api/shop/124" path parameters.
+ Then The api user sends a GET request and saves the returned response.
+ And The api user verifies that the status code is 203.
 
 
 
