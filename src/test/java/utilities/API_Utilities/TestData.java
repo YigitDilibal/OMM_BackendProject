@@ -16,5 +16,17 @@ public class TestData{
         return requestBody;
     }
 
+    public HashMap editBlogCommentRequestBody() {
+
+        requestBody = new HashMap<>();
+
+        requestBody.put("id", 21);
+        requestBody.put("name", "Anthony");
+        requestBody.put("email", "anthony@gmail.com");
+        requestBody.put("comment", "Please write more about this topic.");
+
+        return requestBody;
+    }
+
 
 }
