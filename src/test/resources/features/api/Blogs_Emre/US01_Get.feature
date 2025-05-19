@@ -1,25 +1,21 @@
 Feature: As a provider I want to be able to access blogs via API connection.
 
-  Scenario: a GET request is sent to the /api/blogs endpoint with valid authorization information,
-            it should be verified that the status code returned is 200 and the response_message in the
-            response body is “Blogs Listed Successfully”.
+  Scenario: When a GET request is sent to the /api/blogs endpoint with valid authorization information, it should be verified that the status code returned is 200 and the response_message in the response body is “Blogs Listed Successfully”.
 
-
-    * The api user constructs the base url with the "provider" token.
+    Given The api user constructs the base url with the "provider" token.
     # Api kullanicisi "provider" token ile base urli olusturur
-    * The api user sets "api/blogs" path parameters.
+    And The api user sets "api/blogs" path parameters.
     # Api kullanicisi "api/blogs" path parametrelerini olusturur
-    * The api user sends a GET request and saves the returned response.
+    And The api user sends a GET request and saves the returned response.
     # Api kullanicisi GET request gonderir ve donen responsei kaydeder
-    * The api user verifies that the status code is 200.
+    And The api user verifies that the status code is 200.
     # Api kullanicisi status codeun 200 oldugunu dogrular
-    * The api user verifies that the "response.response_message" information in the response body is "Blogs Listed Successfully".
+    Then The api user verifies that the "response.response_message" information in the response body is "Blogs Listed Successfully".
     # Api kullanicisi response bodydeki response_message bilgisinin "Blogs Listed Successfully" oldugunu dogrular
 
 
-  Scenario Outline :  The information (lang_id, title, slug, tags, summary, content, keywords, category_id, storage, image_default,
-             image_small, total_views, user_id, url, status, createdAt, createdBy, updatedAt, updatedBy)
-             in the response body of id(x) should be verified.
+  Scenario Outline: The information (lang_id, title, slug, tags, summary, content, keywords, category_id, storage, image_default, image_small, total_views, user_id, url, status, createdAt, createdBy, updatedAt, updatedBy) in the response body of id(x) should be verified.
+
 
     * The api user constructs the base url with the "provider" token.
     # Api kullanicisi "provider" token ile base urli olusturur
@@ -36,14 +32,13 @@ Feature: As a provider I want to be able to access blogs via API connection.
 
 
 
-  Scenario:  a GET request is sent to /api/blogs endpoint with invalid (invalid API key) authorization information,
-             it should be verified that the status code returned is 401 and the response_message
-             in the response body is “Invalid token or token missing”.
+  Scenario: When a GET request is sent to /api/blogs endpoint with invalid (invalid API key) authorization information, it should be verified that the status code returned is 401 and the response_message in the response body is “Invalid token or token missing”.
 
-    * The api user constructs the base url with the "provider" token.
-    # Api kullanicisi "provider" token ile base urli olusturur
+    * The api user constructs the base url with the "invalid" token.
+    # Api kullanicisi "invalid" token ile base urli olusturur
     * The api user sets "api/blogs" path parameters.
     # Api kullanicisi "api/blogs" path parametrelerini olusturur
+
     #* The api user sends a GET request and saves the returned response.
     ## Api kullanicisi GET request gonderir ve donen responsei kaydeder
     #* The api user verifies that the status code is 401.
@@ -53,57 +48,3 @@ Feature: As a provider I want to be able to access blogs via API connection.
 
     * The api user sends a GET request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.
     # Api kullanicisi GET request gonderir, donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

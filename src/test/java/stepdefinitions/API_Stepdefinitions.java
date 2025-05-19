@@ -104,14 +104,14 @@ public class API_Stepdefinitions {
     @Given("The api user prepares a post request body to send to the api addBlog endpoint")
     public void the_api_user_prepares_a_post_request_body_to_send_to_the_api_add_blog_endpoint() {
 
-        /*
-        {
-"title" : "New Blog",
-"category_id" :1,
-"summary":"Blog Summary.",
-"content":"Blog Content"
-}
-         */
+                    /*
+                    {
+                        "title" : "New Blog",
+                        "category_id" :1,
+                        "summary":"Blog Summary.",
+                        "content":"Blog Content"
+                     }
+                     */
 
         jsonObjectRequest.put("title", "New Blog");
         jsonObjectRequest.put("category_id", 1);
@@ -136,13 +136,13 @@ public class API_Stepdefinitions {
 
     @Given("The api user prepares a post request body containing missing data to send to the api addBlog endpoint.")
     public void the_api_user_prepares_a_post_request_body_containing_missing_data_to_send_to_the_api_add_blog_endpoint() {
-        /*
-        {
-"title" : "New Blog",
-"category_id" :1,
-"summary":"Blog Summary."
-}
-         */
+                        /*
+                        {
+                        "title" : "New Blog",
+                        "category_id" :1,
+                        "summary":"Blog Summary."
+                        }
+                       */
 
         hashMapRequest.put("title", "New Blog");
         hashMapRequest.put("category_id", 1);
@@ -152,6 +152,7 @@ public class API_Stepdefinitions {
 
     @Given("The api user prepares a post request without any data to send to the api addBlog endpoint.")
     public void the_api_user_prepares_a_post_request_without_any_data_to_send_to_the_api_add_blog_endpoint() {
+
     }
 
     @Given("The api user prepares a patch request body to send to the api editBlog endpoint")
@@ -248,3 +249,5 @@ public class API_Stepdefinitions {
                          "data.shop_list[0].contact_no", containsString(arg5));
 
     }}
+
+
