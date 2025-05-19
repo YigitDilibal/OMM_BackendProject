@@ -80,4 +80,11 @@ public class YigitStep {
                         "data.discount", containsString(arg4),
                         "data.description", containsString(arg5));
     }
+
+    @And("The api user sends a POST request for products and saves the returned response.")
+    public void theApiUserSendsAPOSTRequestForProductsAndSavesTheReturnedResponse() {
+
+
+
+    }
 }
