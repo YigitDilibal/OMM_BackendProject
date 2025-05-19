@@ -19,7 +19,7 @@ Feature: As a provider, I should be able to access the detailed information of t
 
     Examples:
       |id  |provider_id |first_name  |last_name|country_code|contact_no  | email           |password  |dob       |gender|
-      |41  |4           |Marcus Hayes|          |1           |2157893265  |marcus@gmail.com|          |1984-10-19|Male  |
+      |42  |4           |Nora Tran|          |1           |2587469878  |noratran@gmail.com|          |1990-06-13|Male  |
 
 
     # When a GET request is sent to the /api/staff-detail/{id} endpoint that does not contain valid authorization information and (id),
@@ -41,7 +41,7 @@ Feature: As a provider, I should be able to access the detailed information of t
   code 203 and response_message “No Details found”.
 
     Given The api user constructs the base url with the "provider" token.
-    When  The api user sets "api/staff-detail/<474>" path parameters.
+    When  The api user sets "api/staff-detail/474" path parameters.
     Then The api user sends a GET request and saves the returned response.
     And The api user verifies that the status code is 203.
     And The api user verifies that the "response.response_message" information in the response body is "No Details found".
@@ -53,5 +53,5 @@ Feature: As a provider, I should be able to access the detailed information of t
   response_message “Invalid token or token missing”.
 
     Given The api user constructs the base url with the "invalid" token.
-    When The api user sets "api/staff-detail/41" path parameters.
+    When The api user sets "api/staff-detail/42" path parameters.
     Then The api user sends a GET request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.
