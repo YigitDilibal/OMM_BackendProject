@@ -1,25 +1,33 @@
 package stepdefinitions;
 
+import hooks.HooksAPI;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.http.ContentType;
+import org.json.JSONObject;
 import utilities.API_Utilities.API_Methods;
 import utilities.API_Utilities.Excel;
 
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 import static stepdefinitions.API_Stepdefinitions.*;
 
+
+
 public class YigitStep {
+
+    static JSONObject jsonMissingData = new JSONObject();
 
     @And("The api user validates the {string}, {string}, {string}, {string}, {string}, {string} contents of the data in the response body.")
     public void theApiUserValidatesTheContentsOfTheDataInTheResponseBody(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5) {
         response.then()
-                .body("data.product_list[0].product_name", containsString(arg0),
-                        "data.product_list[0].currency", containsString(arg1),
-                        "data.product_list[0].currency_code", containsString(arg2),
-                        "data.product_list[0].product_currency", containsString(arg3),
-                        "data.product_list[0].product_price", containsString(arg4),
-                        "data.product_list[0].sale_price", containsString(arg5));
+                .body("data.product_list[1].product_name", containsString(arg0),
+                        "data.product_list[1].currency", containsString(arg1),
+                        "data.product_list[1].currency_code", containsString(arg2),
+                        "data.product_list[1].product_currency", containsString(arg3),
+                        "data.product_list[1].product_price", containsString(arg4),
+                        "data.product_list[1].sale_price", containsString(arg5));
 
     }
 
@@ -27,11 +35,11 @@ public class YigitStep {
     public void theApiUserValidatesTheContentsOfTheDataInTheResponseBody(String arg0, String arg1, String arg2, String arg3, String arg4) {
 
         response.then()
-                .body("data.product_list[0].product_discount", containsString(arg0),
-                        "data.product_list[0].short_description", containsString(arg1),
-                        "data.product_list[0].category_name", containsString(arg2),
-                        "data.product_list[0].subcategory_name", containsString(arg3),
-                        "data.product_list[0].product_image", containsString(arg4));
+                .body("data.product_list[1].product_discount", containsString(arg0),
+                        "data.product_list[1].short_description", containsString(arg1),
+                        "data.product_list[1].category_name", containsString(arg2),
+                        "data.product_list[1].subcategory_name", containsString(arg3),
+                        "data.product_list[1].product_image", containsString(arg4));
 
     }
 
@@ -125,16 +133,11 @@ public class YigitStep {
     @When("The api user prepares a missing post request body to send to the api addProduct endpoint")
     public void theApiUserPreparesAMissingPostRequestBodyToSendToTheApiAddProductEndpoint() {
 
-        jsonObjectRequest.put("sale_price", "50");
-        jsonObjectRequest.put("short_description", "Elmas bileme tasi");
-        jsonObjectRequest.put("description", "Jilet kadar keskin bicaklar");
-        jsonObjectRequest.put("manufactured_by", "Yigit LTD");
+        jsonMissingData.put("sale_price", "50");
+        jsonMissingData.put("short_description", "Elmas bileme tasi");
+        jsonMissingData.put("description", "Jilet kadar keskin bicaklar");
+        jsonMissingData.put("manufactured_by", "Yigit LTD");
 
-
-    }
-
-    @When("The api user prepares a post request body with no data to send to the api addProduct endpoint")
-    public void theApiUserPreparesAPostRequestBodyWithNoDataToSendToTheApiAddProductEndpoint() {
 
     }
 
@@ -148,6 +151,70 @@ public class YigitStep {
         API_Methods.pathParam(pathParam);
 
         Excel.isimAltindakiDegeriGuncelle("Yigit",Integer.parseInt(id));
+
+
+    }
+
+    @When("The api user sets {string} path parameters with id taken from POST.")
+    public void theApiUserSetsPathParametersWithIdTakenFromPOST(String arg0) {
+
+        String id = Excel.isimAltindakiDegeriGetir("Yigit") + "";
+
+        String pathParam = arg0+"/"+id;
+
+        API_Methods.pathParam(pathParam);
+
+
+    }
+
+    @Then("The api user prepares a patch request body to send to the api editProduct endpoint")
+    public void theApiUserPreparesAPatchRequestBodyToSendToTheApiEditProductEndpoint() {
+
+        jsonObjectRequest.put("product_name", "Bileme tasi Updated");
+        jsonObjectRequest.put("short_description", "patchlenmis Elmas bileme tasi");
+        jsonObjectRequest.put("price", 250);
+        jsonObjectRequest.put("description", "Yigit LTD STI");
+
+    }
+
+    @Then("The api user prepares a request body with no data to send to the api addProduct endpoint")
+    public void theApiUserPreparesARequestBodyWithNoDataToSendToTheApiAddProductEndpoint() {
+    }
+
+    @And("The api user sends a PATCH request with empty body and saves the returned response.")
+    public void theApiUserSendsAPATCHRequestWithEmptyBodyAndSavesTheReturnedResponse() {
+
+        response = given()
+                .spec(HooksAPI.spec)
+                .contentType(ContentType.JSON)
+                .when()
+                .body("{}")
+                .patch(API_Methods.fullPath);
+
+
+    }
+
+    @And("The api user sends a POST request with no body and saves the returned response.")
+    public void theApiUserSendsAPOSTRequestWithNoBodyAndSavesTheReturnedResponse() {
+
+        response = given()
+                .spec(HooksAPI.spec)
+                .contentType(ContentType.JSON)
+                .when()
+                .body("{}")
+                .post(API_Methods.fullPath);
+
+    }
+
+    @And("The api user sends a POST request with missing data and saves the returned response.")
+    public void theApiUserSendsAPOSTRequestWithMissingDataAndSavesTheReturnedResponse() {
+
+        response = given()
+                .spec(HooksAPI.spec)
+                .contentType(ContentType.JSON)
+                .when()
+                .body(jsonMissingData.toString())
+                .post(API_Methods.fullPath);
 
 
     }

@@ -34,7 +34,7 @@ Feature: As a provider, I want to be able to create a new product record via API
     Given The api user constructs the base url with the "provider" token.
     Then The api user sets "api/addProduct" path parameters.
     When The api user prepares a missing post request body to send to the api addProduct endpoint
-    And The api user sends a POST request and saves the returned response.
+    And The api user sends a POST request with missing data and saves the returned response.
     Then The api user verifies that the status code is 203.
     And The api user verifies that the "response.response_message" information in the response body is "Add product failed, required fields empty.".
 
@@ -49,8 +49,7 @@ Feature: As a provider, I want to be able to create a new product record via API
 
     Given The api user constructs the base url with the "provider" token.
     Then The api user sets "api/addProduct" path parameters.
-    When The api user prepares a post request body with no data to send to the api addProduct endpoint
-    And The api user sends a POST request and saves the returned response.
+    And The api user sends a POST request with no body and saves the returned response.
     Then The api user verifies that the status code is 203.
     And The api user verifies that the "response.response_message" information in the response body is "Add product failed, required fields empty.".
 
@@ -58,7 +57,7 @@ Feature: As a provider, I want to be able to create a new product record via API
 
 
   Scenario: Verify that a POST request to /api/addProduct without valid authorization and correct data returns status code 401
-  and response_message “Invalid token or token missing”. And verify that the product is created with a Get request.
+  and response_message “Invalid token or token missing”.
 
     # When a POST body containing invalid (invalid API key) authorization information and correct data (shop_id, category, subcategory,
     # product_name, unit_value, unit, price, discount, sale_price, short_description, description, manufactured_by) is sent to the
