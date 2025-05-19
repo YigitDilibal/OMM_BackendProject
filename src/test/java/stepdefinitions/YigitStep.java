@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import utilities.API_Utilities.API_Methods;
+import utilities.API_Utilities.Excel;
 
 import static org.hamcrest.Matchers.containsString;
 import static stepdefinitions.API_Stepdefinitions.*;
@@ -145,6 +146,8 @@ public class YigitStep {
         String pathParam = arg0+"/"+id;
 
         API_Methods.pathParam(pathParam);
+
+        Excel.isimAltindakiDegeriGuncelle("Yigit",Integer.parseInt(id));
 
 
     }
