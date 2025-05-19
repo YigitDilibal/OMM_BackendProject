@@ -5,6 +5,8 @@ import io.cucumber.java.en.Then;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
+import utilities.API_Utilities.API_Methods;
+import utilities.API_Utilities.Excel;
 
 import static org.hamcrest.Matchers.containsString;
 import static stepdefinitions.API_Stepdefinitions.jsonObjectRequest;
@@ -93,5 +95,13 @@ public class VarolStep {
                 .contentType(ContentType.JSON)
                 .body(emptyJsonBody);
         String responseMessage = response.jsonPath().getString("response.response_message");
+    }
+
+    @Then("The api user sets {string} path parameters to GET verification.")
+    public void theApiUserSetsPathParametersToGETVerification(String arg0) {
+        String id = response.jsonPath().getString("data.added_blog_category_id");
+        String pathParam = arg0+"/"+id;
+        API_Methods.pathParam(pathParam);
+        Excel.isimAltindakiDegeriGuncelle("Varol",Integer.parseInt(id));
     }
 }
