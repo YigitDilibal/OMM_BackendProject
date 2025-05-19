@@ -1,9 +1,12 @@
 package stepdefinitions;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import utilities.API_Utilities.API_Methods;
 
 import static org.hamcrest.Matchers.containsString;
-import static stepdefinitions.API_Stepdefinitions.response;
+import static stepdefinitions.API_Stepdefinitions.*;
 
 public class YigitStep {
 
@@ -81,9 +84,67 @@ public class YigitStep {
                         "data.description", containsString(arg5));
     }
 
-    @And("The api user sends a POST request for products and saves the returned response.")
-    public void theApiUserSendsAPOSTRequestForProductsAndSavesTheReturnedResponse() {
 
+    @When("The api user prepares a post request body to send to the api addProduct endpoint")
+    public void theApiUserPreparesAPostRequestBodyToSendToTheApiAddProductEndpoint() {
+
+        /*
+        {
+"shop_id":11,
+"category":3,
+"subcategory":2,
+"product_name":"New Product",
+"unit_value":50,
+"unit":1,
+"price":200,
+"discount":0,
+"sale_price":200,
+"short_description":"Test Short Desc.",
+"description":"Test Desc",
+"manufactured_by":"QuickHand Solitions"
+}
+         */
+
+
+        jsonObjectRequest.put("shop_id", "1999");
+        jsonObjectRequest.put("category", "3");
+        jsonObjectRequest.put("subcategory", "2");
+        jsonObjectRequest.put("product_name", "Bileme Tasi");
+        jsonObjectRequest.put("unit_value", "40");
+        jsonObjectRequest.put("unit", "1");
+        jsonObjectRequest.put("price", "50");
+        jsonObjectRequest.put("discount", "0");
+        jsonObjectRequest.put("sale_price", "50");
+        jsonObjectRequest.put("short_description", "Elmas bileme tasi");
+        jsonObjectRequest.put("description", "Jilet kadar keskin bicaklar");
+        jsonObjectRequest.put("manufactured_by", "Yigit LTD");
+
+    }
+
+    @When("The api user prepares a missing post request body to send to the api addProduct endpoint")
+    public void theApiUserPreparesAMissingPostRequestBodyToSendToTheApiAddProductEndpoint() {
+
+        jsonObjectRequest.put("sale_price", "50");
+        jsonObjectRequest.put("short_description", "Elmas bileme tasi");
+        jsonObjectRequest.put("description", "Jilet kadar keskin bicaklar");
+        jsonObjectRequest.put("manufactured_by", "Yigit LTD");
+
+
+    }
+
+    @When("The api user prepares a post request body with no data to send to the api addProduct endpoint")
+    public void theApiUserPreparesAPostRequestBodyWithNoDataToSendToTheApiAddProductEndpoint() {
+
+    }
+
+    @Then("The api user sets {string} path parameters for verification GET.")
+    public void theApiUserSetsPathParametersForVerificationGET(String arg0) {
+
+        String id = response.jsonPath().getString("data.added_product_id");
+
+        String pathParam = arg0+"/"+id;
+
+        API_Methods.pathParam(pathParam);
 
 
     }
