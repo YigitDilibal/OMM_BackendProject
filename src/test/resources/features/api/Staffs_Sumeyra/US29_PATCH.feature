@@ -80,24 +80,23 @@ Feature: As a provider, I want to be able to update the information of the staff
     Given The api user constructs the base url with the "invalid" token.
     And The api user sets "api/editStaff/92" path parameters.
     And The api user prepares a patch request body and send to the api editStaff endpoint
-    When The api user sends a PATCH request and saves the returned response.
-    Then The api user verifies that the status code is 401.
-    Then The api user verifies that the "response.response_message" information in the response body is "Invalid token or token missing".
+   Then The api user sends a PATCH request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.
+
 
 
    # Verify that the update_staff_id in the response body returned from the /api/editStaff/{id} endpoint is the same as
    # the id path parameter in the /api/editStaff/{id} endpoint.
 
-  Scenario Outline: Verify that the updated blog is successfully modified via API by sending a GET request to /api/editStaff/{id}
+  Scenario: Verify that the updated staff is successfully modified via API by sending a GET request to /api/editStaff/{id}
   using the update_staff_id returned in the PATCH response.
 
     Given The api user constructs the base url with the "provider" token.
-    And The api user sets "api/editStaff/<id>" path parameters.
-    And The api user sends a GET request and saves the returned response.
-
-    Examples:
-      | id |
-      | 91 |
+    And The api user sets "api/editStaff/41" path parameters.
+    And The api user prepares a part of patch request body to send to the api editStaff endpoint
+    When The api user sends a PATCH request and saves the returned response.
+    And The api user verifies that the status code is 200.
+    And The api user verifies that the "response.response_message" information in the response body is "Staff updated successfully".
+    Then The api user verifies that the "data.update_staff_id" information in the response body is the same as the id path parameter in the endpoint.
 
 
     # "The staff record that is requested to be updated from the API must be verified that it has been updated from the API.
@@ -105,19 +104,18 @@ Feature: As a provider, I want to be able to update the information of the staff
     # to verify that the record has been updated.)"
 
 
+  Scenario Outline: Verify that the newly created staff via /api/myStaffs is successfully created by sending a GET request
+  to /api/staff-detail/{id} using the added_blog_id returned in the POST response.
 
-  Scenario Outline: Verify that the newly created blog via /api/addBlog is successfully created by sending a GET request
-  to /api/blog/{id} using the added_blog_id returned in the POST response.
-
-    * The api user constructs the base url with the "provider" token.
+    Given The api user constructs the base url with the "provider" token.
     # Api kullanicisi "provider" token ile base urli olusturur
-    * The api user sets "api/blog/<id>" path parameters.
+    And The api user sets "api/staff-detail/<id>" path parameters.
     # Api kullanicisi "api/blogs" path parametrelerini olusturur
-    * The api user sends a GET request and saves the returned response.
+    And The api user sends a GET request and saves the returned response.
     # Api kullanicisi GET request gonderir ve donen responsei kaydeder
-    * The api user verifies that the status code is 200.
+    Then The api user verifies that the status code is 200.
     # Api kullanicisi status codeun 200 oldugunu dogrular
 
     Examples:
       | id |
-      | 89 |
+      | 187 |

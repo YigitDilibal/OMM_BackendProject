@@ -4,11 +4,17 @@ Feature: As a provider, I want to be able to create a new blog category record v
   and response_message “Blog Category added successfully”.
 
     Given The api user constructs the base url with the "provider" token.
-    When The api user sets "api/addBlogCategory" path parameters.
+    Then The api user sets "api/addBlogCategory" path parameters.
     Then The api user prepares a post request body to send to the api addBlogCategory endpoint
-    Then The api user sends a POST request and saves the returned response.
+    And The api user sends a POST request and saves the returned response.
     Then The api user verifies that the status code is 200.
     And The api user verifies that the "response.response_message" information in the response body is "Blog Category added successfully".
+
+    Given The api user constructs the base url with the "provider" token.
+    Then The api user sets "api/addBlogCategory" path parameters to GET verification.
+    And The api user sends a GET request and saves the returned response.
+    Then The api user verifies that the status code is 200.
+    And The api user verifies that the "response.response_message" information in the response body is "Blog Category Details".
 
 
   Scenario: Verify that a POST request to /api/addBlogCategory with valid authorization but missing data returns status code
@@ -42,16 +48,3 @@ Feature: As a provider, I want to be able to create a new blog category record v
     Then The api user sends a POST request and saves the returned response.
     Then The api user verifies that the status code is 401.
     And The api user verifies that the "response.response_message" information in the response body is "Invalid token or token missing".
-
-
-  Scenario Outline: Verify that the newly created blog via /api/addBlogCategory is successfully created by sending a GET request
-  to /api/blogCategory/{id} using the added_blog_category_id returned in the POST response.
-
-    Given The api user constructs the base url with the "provider" token.
-    When The api user sets "api/addBlogCategory/<id>" path parameters.
-    Then The api user sends a GET request and saves the returned response.
-    And The api user verifies that the status code is 200.
-
-    Examples:
-      | id |
-      | 89 |
