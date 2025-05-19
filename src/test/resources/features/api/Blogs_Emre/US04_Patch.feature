@@ -1,6 +1,8 @@
-Feature: As a provider, I want to be able to update the information of the blog with the specified id number via API connection.
+Feature: As a provider, I want to be able to update the information of the blog with the specified id number
+  via API connection.
 
-  Scenario: When a PATCH body is sent to the endpoint /api/editBlog/{id} containing the correct (id) and correct data (title, summary, content) with valid authorization information, it must be verified that the status code returned is 200 and the response_message in the response body is “Blog  Updated successfully”.
+  Scenario: Verify that a PATCH request to /api/editBlog/{id} with valid authorization and correct data returns status code
+  200, response_message “Blog  Updated successfully”, and that updated_blog_id in the response matches the path parameter id.
 
     * The api user constructs the base url with the "provider" token.
     # Api kullanicisi "provider" token ile base urli olusturur
@@ -14,9 +16,13 @@ Feature: As a provider, I want to be able to update the information of the blog 
     # Api kullanicisi status codeun 200 oldugunu dogrular
     * The api user verifies that the "response.response_message" information in the response body is "Blog  Updated successfully".
     # Api kullanicisi response bodydeki response_message bilgisinin "Blog  Updated successfully" oldugunu dogrular
+    * The api user verifies that the "data.updated_blog_id" information in the response body is the same as the id path parameter in the endpoint.
+    # Api kullanıcısı response body icindeki "updated_blog_id" bilgisinin endpointde yazan id path parametresi ile ayni oldugunu dogrular.
 
 
-  Scenario: When a PATCH body containing the correct (id) and correct data (content) with valid authorization information is sent to the /api/editBlog/{id} endpoint, it should be verified that the status code returned is 200 and the response_message in the response body is “Blog  Updated successfully”.
+  Scenario: Verify that a PATCH request to /api/editBlog/{id} with valid authorization but no data returns status code
+  203 and response_message “No data for updated.”
+
     * The api user constructs the base url with the "provider" token.
     # Api kullanicisi "provider" token ile base urli olusturur
     * The api user sets "api/editBlog/83" path parameters.
@@ -31,7 +37,8 @@ Feature: As a provider, I want to be able to update the information of the blog 
     # Api kullanicisi response bodydeki response_message bilgisinin "No data for updated." oldugunu dogrular
 
 
-  Scenario: When a PATCH body is sent to /api/editBlog/{id} endpoint with valid authorization information (id) and correct data (title, summary, content), it should be verified that the status code returned is 203 and the response_message in the response body is “Id missing”.
+  Scenario: Verify that a PATCH request to /api/editBlog/{id} with valid authorization and correct data but missing
+  id returns status code 203 and response_message “Id missing”.
 
     * The api user constructs the base url with the "provider" token.
     # Api kullanicisi "provider" token ile base urli olusturur
@@ -47,7 +54,8 @@ Feature: As a provider, I want to be able to update the information of the blog 
     # Api kullanicisi response bodydeki response_message bilgisinin "Id missing" oldugunu dogrular
 
 
-  Scenario: When a PATCH body containing a valid authorization information, an unregistered (id) and correct data (title, summary, content) is sent to the /api/editBlog/{id} endpoint, it must be verified that the returned status code is 203 and the response_message information in the response body is "No Results found for the given ID".
+  Scenario: Verify that a PATCH request to /api/editBlog/{id} with valid authorization and correct data but
+  a non-existent id returns status code 203 and response_message “No Results found for the given ID”.
 
     * The api user constructs the base url with the "provider" token.
     # Api kullanicisi "provider" token ile base urli olusturur
@@ -63,7 +71,8 @@ Feature: As a provider, I want to be able to update the information of the blog 
     # Api kullanicisi response bodydeki response_message bilgisinin "No Results found for the given ID" oldugunu dogrular
 
 
-  Scenario: When a PATCH body is sent to /api/editBlog/{id} endpoint with invalid (invalid API key) authorization information and correct (id) and correct data (title, summary, content), it should be verified that the status code returned is 401 and the response_message in the response body is “Invalid token or token missing”.
+  Scenario: Verify that a PATCH request to /api/editBlog/{id} with an invalid API key, correct id, and valid data
+  returns status code 401 and response_message “Invalid token or token missing”.
 
     * The api user constructs the base url with the "invalid" token.
     # Api kullanicisi "invalid" token ile base urli olusturur
@@ -83,7 +92,8 @@ Feature: As a provider, I want to be able to update the information of the blog 
     * The api user sends a PATCH request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.
     # Api kullanicisi PATCH request gonderir, donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular
 
-  Scenario Outline:Verify that the updated blog is successfully modified via API by sending a GET request to /api/blog/{id}
+
+  Scenario Outline: Verify that the updated blog is successfully modified via API by sending a GET request to /api/blog/{id}
   using the updated_blog_id returned in the PATCH response.
 
     * The api user constructs the base url with the "provider" token.
@@ -98,5 +108,3 @@ Feature: As a provider, I want to be able to update the information of the blog 
     Examples:
       | id |
       | 91 |
-
-
