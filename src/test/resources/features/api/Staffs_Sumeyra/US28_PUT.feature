@@ -55,15 +55,22 @@ Feature: As a provider, I want to be able to create a new staff record via API c
     # "The new staff record to be created from the API must be verified from the API.
     # (With the added_staff_id returned in the response body, it can be verified that a record was created by sending a GET request to the /api/staff-detail/{id} endpoint.)"
 
-  #  /api/staff-detail/{id}  UNKNOWN MEETHOD !!
+
   Scenario Outline: Verify that the newly created blog via /api/addStaff is successfully created by sending a GET request
   to /api/staff-detail/{id} using the added_staff_id returned in the POST response.
 
     Given The api user constructs the base url with the "provider" token.
+    And The api user sets "api/addStaff" path parameters.
+    And The api user prepares a post request body to send to the api addStaff endpoint
+    When The api user sends a POST request and saves the returned response.
+    And The api user verifies that the status code is 200.
+    Then The api user verifies that the "response.response_message" information in the response body is "Staff added successfully".
+
+    Given The api user constructs the base url with the "provider" token.
     And The api user sets "api/staff-detail/<id>" path parameters.
-    And The api user prepares a post request body to send to the api addStaff endpoint for newly added staff
     And The api user sends a GET request and saves the returned response.
     Then The api user verifies that the status code is 200.
+    Then The api user verifies that the "data.update_staff_id" information in the response body is the same as the id path parameter in the endpoint.
 
     Examples:
       | id |
