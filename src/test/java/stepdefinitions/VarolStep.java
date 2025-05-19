@@ -76,26 +76,14 @@ public class VarolStep {
 
     @Then("The api user prepares a post request body to send to the api addBlogCategory endpoint")
     public void the_api_user_prepares_a_post_request_body_to_send_to_the_api_add_blog_category_endpoint() {
-        jsonObjectRequest.put("shop_title", "New Shop");
-        jsonObjectRequest.put("description", "New Shop Desc");
-        jsonObjectRequest.put("contact_no", "12365478985");
-        jsonObjectRequest.put("email", "newshop@gmail.com");
-        jsonObjectRequest.put("tax_allow", "1");
-        jsonObjectRequest.put("address", "New York City,USA");
-        jsonObjectRequest.put("category", "1");
-        jsonObjectRequest.put("sub_category", "3");
+        jsonObjectRequest.put("name", "New Blog Category");
+        jsonObjectRequest.put("description", "New Blog Category Description");
     }
 
     @Then("The api user prepares a post request body containing missing data to send to the api addBlogCategory endpoint.")
     public void the_api_user_prepares_a_post_request_body_containing_missing_data_to_send_to_the_api_add_blog_category_endpoint() {
-        jsonObjectRequest.put("shop_title", "New Shop");
-        jsonObjectRequest.put("description", "New Shop Desc");
-        jsonObjectRequest.put("contact_no", "12365478985");
-        jsonObjectRequest.put("email", "newshop@gmail.com");
-        jsonObjectRequest.put("tax_allow", "1");
-        jsonObjectRequest.put("address", "New York City,USA");
-        jsonObjectRequest.put("category", "1");
-        jsonObjectRequest.put("sub_category", "3");
+        jsonObjectRequest.put("name", "New Blog Category");
+        jsonObjectRequest.put("description", "New Blog Category Description");
     }
 
     @Then("The api user prepares a post request without any data to send to the api addBlogCategory endpoint.")
