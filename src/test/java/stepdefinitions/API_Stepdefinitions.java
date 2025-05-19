@@ -131,7 +131,7 @@ public class API_Stepdefinitions {
                 .body(jsonObjectRequest.toString())
                 .post(API_Methods.fullPath);
 
-      //  response.prettyPrint();
+        // response.prettyPrint();
     }
 
     @Given("The api user prepares a post request body containing missing data to send to the api addBlog endpoint.")
