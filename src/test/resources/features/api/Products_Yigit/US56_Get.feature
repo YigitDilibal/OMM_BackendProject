@@ -21,7 +21,7 @@ Feature: As a provider, I want to be able to access products via API connection.
 
     Examples:
   |shop_id|product_name|currency|currency_code|product_currency|product_price|sale_price|product_discount|short_description|category_name|subcategory_name|product_image|
-  |11     |18v Cordless|$       |USD          |USD             |150          |150       |0               |The Flexiclick   |Repair Tools |Power Tools    |powertools2   |
+  |11     |New Product |$       |USD          |USD             |250          |150       |0               |Test Short       |Repair Tools |Power Tools    |powertools2   |
 
 
 

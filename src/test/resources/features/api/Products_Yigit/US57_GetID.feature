@@ -23,7 +23,7 @@ Feature: As a provider, I must be able to access detailed information about the 
 
     Examples:
       |id |user_id|manufactured_by|shop_id|category|subcategory|product_name|unit|unit_name|unit_value|currency|currency_code|prices     |sales_price|product_discount|short_description|category_name|subcategory_name|shop_name|price|sale_price|discount|description|
-      |5  |4      |QuickHand Solut|11     |3       |2          |18v Cordless|1   |pc       |49        |$       |USD          |150        |150        |0               |The Flexiclick   |Repair Tools |Power Tools     |QuickHand|150  |150       |0       |interchangeable|
+      |5  |4      |QuickHand Solut|11     |3       |2          |New Product |1   |pc       |49        |$       |USD          |250        |150        |0               |Test Short       |Repair Tools |Power Tools     |QuickHand|250  |150       |0       |Test Desc  |
 
 
 
