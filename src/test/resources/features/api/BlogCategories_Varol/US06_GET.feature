@@ -25,3 +25,14 @@ Feature: As a provider, I want to be able to access blog categories via API conn
 
     # When a GET request is sent to /api/blogCategories endpoint with invalid (invalid API key) authorization information,
     # it should be verified that the status code returned is 401 and the response_message in the response body is “Invalid token or token missing”.
+
+
+  Scenario: Verify that a GET request to api/blogCategories with an invalid API key returns status code 401 and response_message
+  “Invalid token or token missing”.
+
+    # When a GET request is sent to /api/blogCategories endpoint with invalid (invalid API key) authorization information, it should be verified
+    # that the status code returned is 401 and the response_message in the response body is “Invalid token or token missing”.
+
+    Given The api user constructs the base url with the "invalid" token.
+    When The api user sets "api/blogCategories" path parameters.
+    Then The api user sends a GET request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.
