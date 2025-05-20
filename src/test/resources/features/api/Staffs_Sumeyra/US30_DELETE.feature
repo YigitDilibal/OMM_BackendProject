@@ -68,6 +68,7 @@ Feature: As a provider, I want to be able to delete staff information with the s
   Scenario: Verify that the deleted blog is successfully removed via API by sending a GET request to /api/blog/{id}
   using the deleted_blog_id returned in the DELETE response.
 
+
     Given The api user constructs the base url with the "provider" token.
     And The api user sets "api/deleteStaff/194" path parameters.
     And The api user sends a DELETE request and saves the returned response.
