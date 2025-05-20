@@ -55,6 +55,7 @@ Feature: As a provider, I want to be able to create a new staff record via API c
     # "The new staff record to be created from the API must be verified from the API.
     # (With the added_staff_id returned in the response body, it can be verified that a record was created by sending a GET request to the /api/staff-detail/{id} endpoint.)"
 
+    # NEW STAFF ADDED !!!!
 
   Scenario Outline: Verify that the newly created blog via /api/addStaff is successfully created by sending a GET request
   to /api/staff-detail/{id} using the added_staff_id returned in the POST response.
