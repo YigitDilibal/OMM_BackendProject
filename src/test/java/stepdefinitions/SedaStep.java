@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
+import org.json.JSONObject;
 import utilities.API_Utilities.API_Methods;
 
 import static org.hamcrest.Matchers.*;
@@ -13,6 +14,8 @@ import static stepdefinitions.API_Stepdefinitions.jsonObjectRequest;
 import static stepdefinitions.API_Stepdefinitions.response;
 
 public class SedaStep {
+
+    static JSONObject jsonMissingData = new JSONObject();
 
     @When("Then The api user sets {string} path parameters.")
     public void theApiUserSetsPathParameters(String pathParam) {
@@ -56,14 +59,14 @@ public class SedaStep {
     @Then("The api user prepares a post request body containing missing data to send to the api addShop endpoint.")
     public void the_api_user_prepares_a_post_request_body_containing_missing_data_to_send_to_the_api_add_shop_endpoint() {
 
-        jsonObjectRequest.put("shop_title", "New Shop");
-        jsonObjectRequest.put("description", "New Shop Desc");
-        jsonObjectRequest.put("contact_no", "12365478985");
-        jsonObjectRequest.put("email", "newshop@gmail.com");
-        jsonObjectRequest.put("tax_allow", "1");
+        jsonMissingData.put("shop_title", "New Shop");
+        jsonMissingData.put("description", "New Shop Desc");
+        jsonMissingData.put("contact_no", "12365478985");
+        jsonMissingData.put("email", "newshop@gmail.com");
+        jsonMissingData.put("tax_allow", "1");
        // jsonObjectRequest.put("address", "New York City,USA");
-        jsonObjectRequest.put("category", "1");
-        jsonObjectRequest.put("sub_category", "3");
+        jsonMissingData.put("category", "1");
+        jsonMissingData.put("sub_category", "3");
 
     }
 
