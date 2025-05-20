@@ -48,6 +48,6 @@ Feature: As a provider, I want to be able to delete blog category information wi
 
 
     Given The api user constructs the base url with the "provider" token.
-    When The api user sets "api/shop/124" path parameters.
+    When The api user sets "api/blogCategory/124" path parameters.
     Then The api user sends a GET request and saves the returned response.
     And The api user verifies that the status code is 203.
