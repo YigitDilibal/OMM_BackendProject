@@ -1,3 +1,4 @@
+@APItest
 Feature: As a provider, I should be able to access the detailed information of the shop with the specified id number via the API connection.
 
   Scenario Outline: Verify that a GET request to /api/shop-details/12  with valid authorization and correct id returns status

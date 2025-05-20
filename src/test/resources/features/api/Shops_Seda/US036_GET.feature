@@ -1,3 +1,4 @@
+@APItest
 Feature: As a provider, I want to be able to access the shops via the API connection.
 
 

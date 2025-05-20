@@ -1,3 +1,4 @@
+@APItest
 Feature: As a provider, I want to be able to update the information of the shop with the specified id number via the API connection.
 
   Scenario: Verify that a PATCH request to /api/editShop/{id}  with valid authorization and correct data returns status code
