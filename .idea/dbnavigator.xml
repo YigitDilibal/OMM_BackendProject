@@ -38,6 +38,9 @@
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="c0e4f402-14fc-40cf-9661-0895fcf8bdb0" />
   </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="c0e4f402-14fc-40cf-9661-0895fcf8bdb0" dataset="u201212290_onlinemasterqa.abuse_reports" active-filter-id="" />
+  </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
   </component>
@@ -71,7 +74,7 @@
           <token-type value="" />
           <token-config-file value="" />
           <token-profile value="" />
-          <session-user value="u201212290_onlineuserqa@78.90.233.68" />
+          <session-user value="u201212290_onlineuserqa@62.73.72.46" />
         </database>
         <properties>
           <auto-commit value="false" />

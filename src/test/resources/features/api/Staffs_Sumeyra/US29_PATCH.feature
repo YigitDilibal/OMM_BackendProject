@@ -17,7 +17,7 @@ Feature: As a provider, I want to be able to update the information of the staff
     # When sending a PATCH body with valid authorization information and correct (id) and correct data (firstname, mobileno) to the /api/editStaff/{id} endpoint,
     # it should be verified that the status code returned is 200 and the response_message in the response body is “Staff updated successfully”.
 
-  Scenario: Verify that a PATCH request to /api/editStaff/{id} with valid authorization and correct data returns status code
+  Scenario: Verify that a PATCH request to /api/editStaff/{id} with valid authorization and correct onlt inlude two data returns status code
   200, response_message “Staff updated successfully”, and that updated_blog_id in the response matches the path parameter id.
 
     Given The api user constructs the base url with the "provider" token.
@@ -63,7 +63,7 @@ Feature: As a provider, I want to be able to update the information of the staff
   a non-existent id returns status code 203 and response_message “Failed to update staff.No staff this id.”.
 
     Given The api user constructs the base url with the "provider" token.
-    And The api user sets "api/editStaff/9745" path parameters.
+    And The api user sets "api/editStaff/92" path parameters.
     And The api user prepares a patch request body to send to the api editStaff endpoint
     When The api user sends a PATCH request and saves the returned response.
     Then The api user verifies that the status code is 203.
@@ -78,7 +78,7 @@ Feature: As a provider, I want to be able to update the information of the staff
   returns status code 401 and response_message “Invalid token or token missing”.
 
     Given The api user constructs the base url with the "invalid" token.
-    And The api user sets "api/editStaff/92" path parameters.
+    And The api user sets "api/editStaff/173" path parameters.
     And The api user prepares a patch request body and send to the api editStaff endpoint
    Then The api user sends a PATCH request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.
 
@@ -91,7 +91,7 @@ Feature: As a provider, I want to be able to update the information of the staff
   using the update_staff_id returned in the PATCH response.
 
     Given The api user constructs the base url with the "provider" token.
-    And The api user sets "api/editStaff/41" path parameters.
+    And The api user sets "api/editStaff/173" path parameters.
     And The api user prepares a part of patch request body to send to the api editStaff endpoint
     When The api user sends a PATCH request and saves the returned response.
     And The api user verifies that the status code is 200.
@@ -108,13 +108,9 @@ Feature: As a provider, I want to be able to update the information of the staff
   to /api/staff-detail/{id} using the added_blog_id returned in the POST response.
 
     Given The api user constructs the base url with the "provider" token.
-    # Api kullanicisi "provider" token ile base urli olusturur
     And The api user sets "api/staff-detail/<id>" path parameters.
-    # Api kullanicisi "api/blogs" path parametrelerini olusturur
     And The api user sends a GET request and saves the returned response.
-    # Api kullanicisi GET request gonderir ve donen responsei kaydeder
     Then The api user verifies that the status code is 200.
-    # Api kullanicisi status codeun 200 oldugunu dogrular
 
     Examples:
       | id |
