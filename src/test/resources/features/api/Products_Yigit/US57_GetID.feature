@@ -1,3 +1,4 @@
+@APItest
 Feature: As a provider, I must be able to access detailed information about the product with the specified ID number via the API connection.
 
   Scenario Outline: Verify that a GET request to /api/myProducts/{id} with valid authorization returns status code 200,

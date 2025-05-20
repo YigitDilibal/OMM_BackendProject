@@ -7,15 +7,14 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         plugin = {
-                "pretty",
-                "html:target/default-cucumber-reports.html",
-                "json:target/json-reports/cucumber.json",
-                "junit:target/xml-report/cucumber.xml",
-                "rerun:target/failedRerun.txt"
+                "pretty",                         // Konsolda okunabilir loglar
+                "html:target/cucumber-reports/cucumber.html", // Cucumber HTML raporu
+                "json:target/cucumber-reports/cucumber.json", // JSON raporu (Cucumber HTML için gerekli)
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm" // Allure raporları için plugin
         },
         features = {"src/test/resources/features/api", "src/test/resources/features/db"},
         glue = {"stepdefinitions","hooks","utilities"},
-        tags = "@API",
+        tags = "@APItest",
         dryRun =false
 
 

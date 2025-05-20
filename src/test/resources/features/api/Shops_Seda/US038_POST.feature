@@ -1,3 +1,4 @@
+@APItest
 Feature: As a provider, I want to be able to create a new shop record via the API connection.
 
   Scenario: Verify that a POST request to /api/addShop with valid authorization and correct data returns status code 200
@@ -7,7 +8,7 @@ Feature: As a provider, I want to be able to create a new shop record via the AP
 # is sent to the /api/addShop endpoint, it should be verified that the returned status code is 200 and the response_message in the response body is "Shop added successfully".
 
  Given The api user constructs the base url with the "provider" token.
- When The api user sets "/api/addShop" path parameters.
+ When The api user sets "api/addShop" path parameters.
  Then The api user prepares a post request body to send to the api addShop endpoint
  And The api user sends a POST request and saves the returned response.
  And The api user verifies that the status code is 200.
@@ -20,7 +21,7 @@ Feature: As a provider, I want to be able to create a new shop record via the AP
 # is sent to the /api/addShop endpoint, it should be verified that the returned status code is 203 and the response_message in the response body is "address is required".
 
  Given The api user constructs the base url with the "provider" token.
- When The api user sets "/api/addShop" path parameters.
+ When The api user sets "api/addShop" path parameters.
  Then The api user prepares a post request body containing missing data to send to the api addShop endpoint.
  And The api user sends a POST request and saves the returned response.
  And The api user verifies that the status code is 203.
@@ -35,7 +36,7 @@ Feature: As a provider, I want to be able to create a new shop record via the AP
    # the response_message in the response body is "No data for updated. Required fields empty\"".
 
     Given The api user constructs the base url with the "provider" token.
-    When The api user sets "/api/addShop" path parameters.
+    When The api user sets "api/addShop" path parameters.
     Then The api user prepares a post request without any data to send to the api addShop endpoint.
     And The api user sends a POST request and saves the returned response.
     And The api user verifies that the status code is 203.
@@ -47,7 +48,7 @@ Feature: As a provider, I want to be able to create a new shop record via the AP
     # When a POST body containing invalid (invalid api key) authorization information and correct data (shop_title, description, contact_no, email, tax_allow, address, category, sub_category)
     # is sent to the /api/addShop endpoint, it should be verified that the returned status code is 401 and the response_message in the response body is "Invalid token or token missing".
 
-  Given The api user constructs the base url with the "provider" token.
+  Given The api user constructs the base url with the "invalid" token.
   When  The api user sets "api/addShop" path parameters.
   Then The api user prepares a post request body to send to the api addShop endpoint
   And The api user sends a POST request and saves the returned response.

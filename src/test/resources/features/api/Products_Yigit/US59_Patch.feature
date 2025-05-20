@@ -1,8 +1,9 @@
+@APItest
 Feature: As a provider, I want to be able to update the information of the blog with the specified id number
   via API connection.
 
   Scenario: Verify that a PATCH request to /api/editProduct/{id} with valid authorization and correct data returns status code
-  200, response_message “Product Updated successfully”, and that updated_blog_id in the response matches the path parameter id. And verify that the product is created with a Get request.
+  200, response_message “Product Updated successfully”, and that data.updated_product_id in the response matches the path parameter id. And verify that the product is created with a Get request.
 
     # When a PATCH body containing valid authorization information and correct (id) and correct data (product_name, price, short_description, description)
     # is sent to the /api/editProduct/{id} endpoint, it must be verified that the returned status code is 200 and the response_message
