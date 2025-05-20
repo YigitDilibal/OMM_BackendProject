@@ -31,12 +31,13 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="c0e4f402-14fc-40cf-9661-0895fcf8bdb0" object-ref="consoles/Project_Database" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="c0e4f402-14fc-40cf-9661-0895fcf8bdb0" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="c0e4f402-14fc-40cf-9661-0895fcf8bdb0" dataset="u201212290_onlinemasterqa.abuse_reports" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
