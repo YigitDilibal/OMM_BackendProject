@@ -2,6 +2,7 @@ package stepdefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
@@ -103,5 +104,24 @@ public class VarolStep {
         String pathParam = arg0+"/"+id;
         API_Methods.pathParam(pathParam);
         Excel.isimAltindakiDegeriGuncelle("Varol",Integer.parseInt(id));
+    }
+
+    @When("The api user sets {string} path parameters with id taken from POST")
+    public void theApiUserSetsPathParametersWithIdTakenFromPOST(String arg0) {
+        String id = Excel.isimAltindakiDegeriGetir("Varol") + "";
+        String pathParam = arg0+"/"+id;
+        API_Methods.pathParam(pathParam);
+    }
+
+    @Then("The api user prepares a patch request body to send to the api editProduct endpoint.")
+    public void theApiUserPreparesAPatchRequestBodyToSendToTheApiEditProductEndpoint() {
+        jsonObjectRequest.put("name", "Updated blog name");
+        jsonObjectRequest.put("description", "Updated blog description");
+    }
+
+    @Then("The api user prepares a post request body to send to the api editBlogCategory endpoint")
+    public void theApiUserPreparesAPostRequestBodyToSendToTheApiEditBlogCategoryEndpoint() {
+        jsonObjectRequest.put("name", "Blog category updated name");
+        jsonObjectRequest.put("description", "Blog category updated description");
     }
 }

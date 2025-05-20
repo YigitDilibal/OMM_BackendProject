@@ -11,7 +11,7 @@ Feature: As a provider, I want to be able to create a new blog category record v
     And The api user verifies that the "response.response_message" information in the response body is "Blog Category added successfully".
 
     Given The api user constructs the base url with the "provider" token.
-    Then The api user sets "api/addBlogCategory" path parameters to GET verification.
+    Then The api user sets "api/blogCategory" path parameters to GET verification.
     And The api user sends a GET request and saves the returned response.
     Then The api user verifies that the status code is 200.
     And The api user verifies that the "response.response_message" information in the response body is "Blog Category Details".
