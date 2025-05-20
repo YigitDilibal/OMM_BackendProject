@@ -64,7 +64,7 @@ Feature: As a provider, I want to be able to create a new shop record via the AP
    Given The api user constructs the base url with the "provider" token.
    When  The api user sets "api/shop-details/<id>" path parameters.
    Then The api user sends a GET request and saves the returned response.
-   And The api user verifies that the status code is 200.
+   And The api user verifies that the status code is 203.
 
 
     Examples:

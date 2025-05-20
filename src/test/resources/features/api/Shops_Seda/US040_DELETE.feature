@@ -65,7 +65,7 @@ using the deleted_shop_id returned in the DELETE response.
  Given The api user constructs the base url with the "provider" token.
  When The api user sets "api/shop/124" path parameters.
  Then The api user sends a GET request and saves the returned response.
- And The api user verifies that the status code is 203.
+ And The api user verifies that the status code is 200.
 
 
 
