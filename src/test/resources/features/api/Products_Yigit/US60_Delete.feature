@@ -1,5 +1,5 @@
 @APItest
-Feature: As a provider, I want to be able to delete shop information with the specified id number via API connection.
+Feature: As a provider, I want to be able to delete product information with the specified ID number via the API connection.
 
   Scenario:Verify that a DELETE request to /api/deleteProduct/{id}  with valid authorization and correct id returns status
   code 200, response_message “Product deleted successfully”, and that deleted_product_id in the response matches the path
