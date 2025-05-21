@@ -63,4 +63,6 @@ Feature: As a provider, I want to be able to delete blog category information wi
 
     Given The api user constructs the base url with the "invalid" token.
     When The api user sets "api/deleteProduct" path parameters with id taken from POST.
-    Then The api user sends a DELETE request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.
+    Then The api user sends a DELETE request and saves the returned response.
+    Then The api user verifies that the status code is 401.
+    And The api user verifies that the "response.response_message" information in the response body is "Invalid token or token missing".
