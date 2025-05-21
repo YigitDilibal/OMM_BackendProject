@@ -6,3 +6,5 @@ Feature: Bank Account Status Insert and Validation
     Given I connect to the database
     When I insert 4 random bank_account records with various status
     Then I should be able to fetch and validate all active bank_account records
+
+
