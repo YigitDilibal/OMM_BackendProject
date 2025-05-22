@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+import hooks.HooksAPI;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,9 +10,11 @@ import io.restassured.specification.RequestSpecification;
 import utilities.API_Utilities.API_Methods;
 import utilities.API_Utilities.Excel;
 
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 import static stepdefinitions.API_Stepdefinitions.jsonObjectRequest;
 import static stepdefinitions.API_Stepdefinitions.response;
+import static stepdefinitions.YigitStep.jsonMissingData;
 
 public class VarolStep {
     @And("The api user validates the {string}, {string}, {string}, {string}, {string}, {string}, {string} contents of the data in the response body.")
@@ -85,17 +88,18 @@ public class VarolStep {
 
     @Then("The api user prepares a post request body containing missing data to send to the api addBlogCategory endpoint.")
     public void the_api_user_prepares_a_post_request_body_containing_missing_data_to_send_to_the_api_add_blog_category_endpoint() {
-        jsonObjectRequest.put("name", "New Blog Category");
-        jsonObjectRequest.put("description", "New Blog Category Description");
+        jsonMissingData.put("name", "New Blog Category");
     }
 
     @Then("The api user prepares a post request without any data to send to the api addBlogCategory endpoint.")
     public void theApiUserPreparesAPostRequestWithoutAnyDataToSendToTheApiAddBlogCategoryEndpoint() {
-        String emptyJsonBody = "{}";
-        RequestSpecification request = RestAssured.given()
+        response = given()
+                .spec(HooksAPI.spec)
                 .contentType(ContentType.JSON)
-                .body(emptyJsonBody);
-        String responseMessage = response.jsonPath().getString("response.response_message");
+                .when()
+                .body("{}")
+                .post(API_Methods.fullPath);
+
     }
 
     @Then("The api user sets {string} path parameters to GET verification.")
@@ -121,7 +125,27 @@ public class VarolStep {
 
     @Then("The api user prepares a post request body to send to the api editBlogCategory endpoint")
     public void theApiUserPreparesAPostRequestBodyToSendToTheApiEditBlogCategoryEndpoint() {
-        jsonObjectRequest.put("name", "Blog category updated name");
-        jsonObjectRequest.put("description", "Blog category updated description");
+        jsonObjectRequest.put("name", "Updated Blog Category");
+        jsonObjectRequest.put("description", "blog category description updated.");
+    }
+
+    @When("The api user sets {string} path parameters with id taken from the POST")
+    public void theApiUserSetsPathParametersWithIdTakenFromThePOST(String arg0) {
+        String id = Excel.isimAltindakiDegeriGetir("Varol") + "";
+        String pathParam = arg0+"/"+id;
+        API_Methods.pathParam(pathParam);
+    }
+
+    @When("The api user prepares PATCH request body to send to the api editProduct endpoint")
+    public void theApiUserPreparesPATCHRequestBodyToSendToTheApiEditProductEndpoint() {
+        jsonObjectRequest.put("name", "Updated Blog Category");
+        jsonObjectRequest.put("description", "blog category description updated.");
+    }
+
+    @When("Api user sets {string} path parameters with id taken from the POST.")
+    public void apiUserSetsPathParametersWithIdTakenFromThePOST(String arg0) {
+        String id = Excel.isimAltindakiDegeriGetir("Varol") + "";
+        String pathParam = arg0+"/"+id;
+        API_Methods.pathParam(pathParam);
     }
 }
