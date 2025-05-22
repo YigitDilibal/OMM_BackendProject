@@ -46,7 +46,7 @@ public class API_Stepdefinitions {
                 .when()
                 .get(API_Methods.fullPath);
 
-        // System.out.println(response.prettyPrint());
+        System.out.println(response.prettyPrint());
 
     }
 
@@ -207,7 +207,7 @@ public class API_Stepdefinitions {
                 .spec(HooksAPI.spec)
                 .when()
                 .delete(API_Methods.fullPath);
-        response.prettyPrint();
+        //response.prettyPrint();
     }
 
 

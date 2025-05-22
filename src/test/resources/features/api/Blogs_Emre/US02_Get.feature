@@ -7,19 +7,19 @@ Feature: As a provider, I should be able to access the detailed information of t
     * The api user constructs the base url with the "provider" token.
     # Api kullanicisi "provider" token ile base urli olusturur
     * The api user sets "api/blog/<id>" path parameters.
-        # Api kullanicisi "api/blogs" path parametrelerini olusturur
+    # Api kullanicisi "api/blogs" path parametrelerini olusturur
     * The api user sends a GET request and saves the returned response.
-        # Api kullanicisi GET request gonderir ve donen responsei kaydeder
+    # Api kullanicisi GET request gonderir ve donen responsei kaydeder
     * The api user verifies that the status code is 200.
-        # Api kullanicisi status codeun 200 oldugunu dogrular
+    # Api kullanicisi status codeun 200 oldugunu dogrular
     * The api user verifies that the "response.response_message" information in the response body is "Blog  Details".
-        # Api kullanicisi response bodydeki response_message bilgisinin "Blog  Details" oldugunu dogrular
+    # Api kullanicisi response bodydeki response_message bilgisinin "Blog  Details" oldugunu dogrular
     * The api user validates the "<data_id>", "<lang_id>", "<title>", "<slug>", "<tags>" and "<summary>" contents of the data in the response body.
-        # Api kullanicisi response bodydeki dataların "<data_id>", "<lang_id>", "<title>", "<slug>", "<tags>" ve "<summary>" içeriklerini doğrular.
+    # Api kullanicisi response bodydeki dataların "<data_id>", "<lang_id>", "<title>", "<slug>", "<tags>" ve "<summary>" içeriklerini doğrular.
 
     Examples:
       | id | data_id | lang_id | title              | slug      | tags | summary     |
-      | 2  | 2       | 1       | Household Services | household |      | Maintaining |
+      | 2  | 2       | 1       | New Blog Updated | PC90- |      | Blog Summary. |
 
 
   Scenario: Verify that a GET request to /api/blog/{id} without valid authorization and id returns status code 203 and
