@@ -19,7 +19,7 @@ Feature: Database Testing
     # Delete the ones with inactive status in bank_account table. Verify that they are deleted.
 
     * Prepare query for deleted into the bank_account table
-    * Verify that 3 added data to the table
+    * Verify that 0 added data to the table
     * Database closed
 
   @US14
