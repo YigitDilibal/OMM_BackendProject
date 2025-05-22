@@ -31,7 +31,7 @@ public class CommonData {
     public static int userId;
     private String newPassword;
     public static List<String> service_coupons;
-    public static List<String> expected_service_coupons=new ArrayList<>(Arrays.asList("PROCLEAN7","PROCPNNEW73",
+    public static List<String> expected_service_coupons=new ArrayList<>(Arrays.asList("PROnew2","PROCLEAN7","PROCPNNEW73",
             "PROCPNNEW735","PROCLEAN101","PROCLEAN1010","PROCLEAN10101","PROCLEAN101010","PROCLEAN111"));
     public static Map<String, Integer> bankAccount;
     public static Map<Integer,String> blog_posts;
