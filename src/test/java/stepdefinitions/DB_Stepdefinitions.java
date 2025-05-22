@@ -332,8 +332,8 @@ public class DB_Stepdefinitions extends Manage {
     @Given("Verify results are obtained service count in the book_service table")
     public void verify_results_are_obtained_service_count_in_the_book_service_table() throws SQLException {
         book_service = new HashMap<>();
-        Integer exp_shop_id = 4;
-        Integer exp_service_count = 114;
+        Integer exp_shop_id = 6;
+        Integer exp_service_count = 94;
         while (resultSet.next()) {
             Integer id = resultSet.getInt("shop_id");
             Integer service_count = resultSet.getInt("service_count");

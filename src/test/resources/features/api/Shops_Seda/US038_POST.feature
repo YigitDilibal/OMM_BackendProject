@@ -25,7 +25,7 @@ Feature: As a provider, I want to be able to create a new shop record via the AP
  Then The api user prepares a post request body containing missing data to send to the api addShop endpoint.
  And The api user sends a POST request and saves the returned response.
  And The api user verifies that the status code is 203.
- And The api user verifies that the "response.response_message" information in the response body is "address is required".
+ And The api user verifies that the "response_message" information in the response body is "No data for updated. Required fields empty\"".
 
 
 

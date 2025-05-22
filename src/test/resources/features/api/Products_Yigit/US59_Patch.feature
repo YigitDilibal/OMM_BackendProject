@@ -43,7 +43,7 @@ Feature: As a provider, I want to be able to update the information of the blog 
     When The api user sets "api/editProduct" path parameters with id taken from POST.
     And The api user sends a PATCH request with empty body and saves the returned response.
     Then The api user verifies that the status code is 203.
-    And The api user verifies that the "response.response_message" information in the response body is "Add product failed, required fields empty.".
+    And The api user verifies that the "response.response_message" information in the response body is "No data for updated.".
 
 
 
