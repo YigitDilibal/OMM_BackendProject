@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+import helperDB.CommonData;
 import hooks.HooksAPI;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -14,6 +15,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static helperDB.JDBC_Structure_Methods.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertEquals;
@@ -25,6 +27,10 @@ import static stepdefinitions.API_Stepdefinitions.*;
 public class YigitStep {
 
     static JSONObject jsonMissingData = new JSONObject();
+    CommonData data = new CommonData();
+
+    public YigitStep() throws SQLException {
+    }
 
     @And("The api user validates the {string}, {string}, {string}, {string}, {string}, {string} contents of the data in the response body.")
     public void theApiUserValidatesTheContentsOfTheDataInTheResponseBody(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5) {
