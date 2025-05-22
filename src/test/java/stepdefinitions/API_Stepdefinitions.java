@@ -170,7 +170,7 @@ public class API_Stepdefinitions {
                 .body(jsonObjectRequest.toString())
                 .patch(API_Methods.fullPath);
 
-         // response.prettyPrint();
+         response.prettyPrint();
     }
 
     @Given("The api user verifies that the {string} information in the response body is the same as the id path parameter in the endpoint.")
@@ -208,7 +208,7 @@ public class API_Stepdefinitions {
                 .spec(HooksAPI.spec)
                 .when()
                 .delete(API_Methods.fullPath);
-        response.prettyPrint();
+        // response.prettyPrint();
     }
 
 

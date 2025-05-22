@@ -69,7 +69,8 @@ public class VarolStep {
 
     @Then("The api user prepares a patch request body to send to the api editBlogCategory endpoint")
     public void theApiUserPreparesAPatchRequestBodyToSendToTheApiEditBlogCategoryEndpoint() {
-        String responseMessage = response.jsonPath().getString("response.response_message");
+        jsonObjectRequest.put("name", "New Blog Category");
+        jsonObjectRequest.put("description", "New Blog Category Description");
     }
 
     @Then("The api user prepares a patch request that does not contain any data to send to the api editBlogCategory endpoint.")
