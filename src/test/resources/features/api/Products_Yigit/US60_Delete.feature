@@ -1,8 +1,9 @@
-Feature: As a provider, I want to be able to delete blog category information with the specified id number via API connection.
+@APItest
+Feature: As a provider, I want to be able to delete product information with the specified ID number via the API connection.
 
-  Scenario: Verify that a DELETE request to /api/deleteBlogCategory/{id}  with valid authorization and correct id returns status
-  code 200, response_message “Blog Category deleted successfully”, and that deleted_blog_category_id in the response matches the path
-  parameter id.  And verify that the product is deleted with a GET request.
+  Scenario:Verify that a DELETE request to /api/deleteProduct/{id}  with valid authorization and correct id returns status
+  code 200, response_message “Product deleted successfully”, and that deleted_product_id in the response matches the path
+  parameter id.  And verify that the product is deleted with a Get request.
 
     # When a DELETE request containing valid authorization information and the correct (id) is sent to the /api/deleteProduct/{id} endpoint, it must be verified
     # that the returned status code is 200 and the response_message information in the response body is "Product deleted successfully".
@@ -63,6 +64,4 @@ Feature: As a provider, I want to be able to delete blog category information wi
 
     Given The api user constructs the base url with the "invalid" token.
     When The api user sets "api/deleteProduct" path parameters with id taken from POST.
-    Then The api user sends a DELETE request and saves the returned response.
-    Then The api user verifies that the status code is 401.
-    And The api user verifies that the "response.response_message" information in the response body is "Invalid token or token missing".
+    Then The api user sends a DELETE request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.

@@ -24,7 +24,7 @@ Feature: As a provider, I want to be able to access the shops via the API connec
 
     Examples:
       |shop_code|shop_name|country_code|tax_allow|tax_number|contact_no|email|address|country_name|state_name|city_name|postal_code|
-      |SHOP4Q0CN5 |FixIt Pros|      |No      |null      |2587456321|info@fixit.com |7990 California City Blvd |USA (+1) |California  |California City |93505  |
+      |SHOP4Q0CN5 |FixIt Pros|      |No      |null   |2587456321|info@fixit.com |7990 California City Blvd |USA (+1) |California  |California City |93505  |
 
 
 

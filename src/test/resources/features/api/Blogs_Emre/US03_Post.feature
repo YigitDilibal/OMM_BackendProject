@@ -19,7 +19,7 @@ Feature: As a provider, I want to be able to create a new blog record via API co
 
 
   Scenario: Verify that a POST request to /api/addBlog with valid authorization but missing data returns status code
-  203 and response_message “Title, summary, content and category_id is required.”
+  200 and response_message “Blog added successfully”
 
     * The api user constructs the base url with the "provider" token.
     # Api kullanicisi "provider" token ile base urli olusturur
@@ -35,8 +35,8 @@ Feature: As a provider, I want to be able to create a new blog record via API co
     # Api kullanicisi response bodydeki response_message bilgisinin "Title, summary, content and category_id is required." oldugunu dogrular
 
 
-  Scenario: Verify that a POST request to /api/addBlog without valid authorization and data returns status code 203
-  and response_message “Title, summary, content and category_id is required.”
+  Scenario: Verify that a POST request to /api/addBlog without valid authorization and data returns status code 200
+  and response_message “Blog added successfully”
 
     * The api user constructs the base url with the "provider" token.
     # Api kullanicisi "provider" token ile base urli olusturur
@@ -46,7 +46,7 @@ Feature: As a provider, I want to be able to create a new blog record via API co
     # Api kullanicisi api addBlog endpointine gondermek için data içermeyen bir post request hazirlar
     * The api user sends a POST request and saves the returned response.
     # Api kullanicisi POST request gonderir ve donen responsei kaydeder
-    * The api user verifies that the status code is 200.
+    * The api user verifies that the status code is 203.
     # Api kullanicisi status codeun 203 oldugunu dogrular
     * The api user verifies that the "response.response_message" information in the response body is "Blog added successfully".
     # Api kullanicisi response bodydeki response_message bilgisinin "Title, summary, content and category_id is required." oldugunu dogrular

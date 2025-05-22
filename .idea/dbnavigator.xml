@@ -19,7 +19,7 @@
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
-    <show-object-properties value="false" />
+    <show-object-properties value="true" />
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
@@ -37,10 +37,7 @@
     <connection id="c0e4f402-14fc-40cf-9661-0895fcf8bdb0" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="c0e4f402-14fc-40cf-9661-0895fcf8bdb0" dataset="u201212290_onlinemasterqa.administrators" active-filter-id="" />
-    <filter-actions connection-id="c0e4f402-14fc-40cf-9661-0895fcf8bdb0" dataset="u201212290_onlinemasterqa.admin_access" active-filter-id="" />
-    <filter-actions connection-id="c0e4f402-14fc-40cf-9661-0895fcf8bdb0" dataset="u201212290_onlinemasterqa.bank_account" active-filter-id="" />
-    <filter-actions connection-id="c0e4f402-14fc-40cf-9661-0895fcf8bdb0" dataset="u201212290_onlinemasterqa.admin_modules" active-filter-id="" />
+    <filter-actions connection-id="c0e4f402-14fc-40cf-9661-0895fcf8bdb0" dataset="u201212290_onlinemasterqa.abuse_reports" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -75,7 +72,7 @@
           <token-type value="" />
           <token-config-file value="" />
           <token-profile value="" />
-          <session-user value="u201212290_onlineuserqa@95.5.125.99" />
+          <session-user value="u201212290_onlineuserqa@78.90.233.68" />
         </database>
         <properties>
           <auto-commit value="false" />

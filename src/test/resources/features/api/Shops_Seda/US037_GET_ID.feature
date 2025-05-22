@@ -24,14 +24,14 @@ Feature: As a provider, I should be able to access the detailed information of t
 
 
 
-  Scenario: Verify that a GET request to /api/shop-details/12 without valid authorization and id returns status code 203 and
+  Scenario: Verify that a GET request to /api/shop-details/id without valid authorization and id returns status code 203 and
   response_message “Id missing”.
 
   # When a GET request containing valid authorization information but no (id) is sent to the /api/shop-details/{id} endpoint, it
   # should be verified that the returned status code is 203 and the response_message in the response body is "Id missing".
 
     Given The api user constructs the base url with the "provider" token.
-    When  The api user sets "/api/shop-details/< >" path parameters.
+    When  The api user sets "api/shop-details" path parameters.
     Then The api user sends a GET request and saves the returned response.
     And The api user verifies that the status code is 203.
     And The api user verifies that the "response.response_message" information in the response body is "Id missing".

@@ -5,8 +5,12 @@ import io.cucumber.java.en.*;
 import org.junit.Assert;
 import utilities.API_Utilities.API_Methods;
 
+import java.util.List;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertNotNull;
 import static stepdefinitions.API_Stepdefinitions.*;
 
 public class SumeyraStep {
@@ -17,12 +21,12 @@ public class SumeyraStep {
 
             response.then()
                     .assertThat()
-                    .body("data.staff_list[9].provider_id", containsString(arg0),
-                            "data.staff_list[9].first_name", containsString(arg1),
-                            "data.staff_list[9].last_name", equalTo(arg2),
-                            "data.staff_list[9].country_code", containsString(arg3),
-                            "data.staff_list[9].contact_no", containsString(arg4),
-                            "data.staff_list[9].email", containsString(arg5));
+                    .body("data.staff_list[8].provider_id", containsString(arg0),
+                            "data.staff_list[8].first_name", containsString(arg1),
+                            "data.staff_list[8].last_name", equalTo(arg2),
+                            "data.staff_list[8].country_code", containsString(arg3),
+                            "data.staff_list[8].contact_no", containsString(arg4),
+                            "data.staff_list[8].email", containsString(arg5));
 
         }
 
@@ -31,13 +35,13 @@ public class SumeyraStep {
 
             response.then()
                     .assertThat()
-                    .body("data.staff_list[9].dob", containsString(arg0),
-                            "data.staff_list[9].gender", containsString(arg1),
-                            "data.staff_list[9].profile_img", containsString(arg2),
-                            "data.staff_list[9].designation", equalTo(arg3),
-                            "data.staff_list[9].exp_year", equalTo(arg4),
-                            "data.staff_list[9].exp_month", containsString(arg5),
-                            "data.staff_list[9].status", containsString(arg6));
+                    .body("data.staff_list[8].dob", containsString(arg0),
+                            "data.staff_list[8].gender", containsString(arg1),
+                            "data.staff_list[8].profile_img", containsString(arg2),
+                            "data.staff_list[8].designation", equalTo(arg3),
+                            "data.staff_list[8].exp_year", equalTo(arg4),
+                            "data.staff_list[8].exp_month", containsString(arg5),
+                            "data.staff_list[8].status", containsString(arg6));
 
 
         }
@@ -80,13 +84,13 @@ public class SumeyraStep {
 "about_emp":"About Martin"
 }
          */
-        jsonObjectRequest.put("firstname", "Marc Edmont");
-        jsonObjectRequest.put("mobileno", "3698521478965");
-        jsonObjectRequest.put("email", "mrtin@gmail.com");
-        jsonObjectRequest.put("gender", "Male");
-        jsonObjectRequest.put("dob", "1985-04-17");
-        jsonObjectRequest.put("shop_id", 15);
-        jsonObjectRequest.put("about_emp", "About Martin");
+        jsonObjectRequest.put("firstname", "Sumeyra Develi");
+        jsonObjectRequest.put("mobileno", "5056396329");
+        jsonObjectRequest.put("email", "sdeveli@gmail.com");
+        jsonObjectRequest.put("gender", "Female");
+        jsonObjectRequest.put("dob", "1995-12-26");
+        jsonObjectRequest.put("shop_id", 20);
+        jsonObjectRequest.put("about_emp", "About Sumeyra");
        // System.out.println("Post Body : " + jsonObjectRequest);
     }
 
@@ -118,7 +122,7 @@ public class SumeyraStep {
     public void theApiUserPreparesAPatchRequestBodyToSendToTheApiEditStaffEndpoint() {
             /*
             {
-"firstname":"Madame Edward",
+"firstname":"Sümeyra ERÖZ",
 "mobileno" :"3698521478965",
 "email":"mdame@gmail.com",
 "gender":"Female",
@@ -127,7 +131,7 @@ public class SumeyraStep {
 }
              */
 
-        hashMapRequest.put("firstname", "Madame Edward");
+        hashMapRequest.put("firstname", "Sümeyra ERÖZ");
         hashMapRequest.put("mobileno", "3698521478965");
         hashMapRequest.put("email", "mdame@gmail.com");
         hashMapRequest.put("gender", "Female");
@@ -168,12 +172,12 @@ public class SumeyraStep {
 
             /*
             {
-"firstname":"Marc Edmont  Updated2",
+"firstname":"Sümeyye Nur Eröz",
 "mobileno" :"3698521478965"
 
 }
              */
-        hashMapRequest.put("firstname", "Marc Edmont  Updated2");
+        hashMapRequest.put("firstname", "Sümeyye Nur Eröz");
         hashMapRequest.put("mobileno", "3698521478965");
     }
 
@@ -201,7 +205,18 @@ public class SumeyraStep {
         hashMapRequest.put("about_emp", "About Martin");
     }
 
+    String lastStaffId;
 
+    @And("The api user gets the last added staff id and save it.")
+    public void theApiUserGetsTheLastAddedStaffIdAndSaveIt() {
+
+        lastStaffId = response.jsonPath().getString("response.data.id");
+        List<Map<String,Object>> list = response.jsonPath().getList("response.data");
+         lastStaffId = (String)list.get(list.size()-1).get("id");
+
+        lastStaffId = response.jsonPath().getString("response.data.id");
+        System.out.println(lastStaffId);
+    }
 }
 
 
