@@ -1,17 +1,24 @@
+Feature: Database Testing
+
+  Background: Database connectivity
+    Given Database connection established
 
 
-@US05
 Scenario: Update safety Password administrators
-* Prepare query to insert data entry into the administrators table
+
+  #Enter a data entry in the administrators table.
+  # Update your password with the sha2 method to increase the security of the entered data.
+
+Given Prepare query to insert data entry into the administrators table
      # PreparedStatement ile insert islemi dogrulama
-* Verify that 1 added to the table
-* Update password
-* Verify that 1 added to the table
-* Database closed
+When Verify that 1 added to the table
+Then Update password
+And Verify that 1 added to the table
+And Database closed
 
 
 
-@US11
+
 Scenario:total amount Group byProvider id
 * Prepare query book_service table
 * Verify results are obtained in the book_service table
@@ -21,8 +28,8 @@ Scenario:total amount Group byProvider id
 
 
 
-@US17
+
 Scenario: Count messages
 * Prepare query count messages contact_form_details table
-* Verify results are obtained "gokcen" and 21
+* Verify results are obtained "vb" and 1
 * Database closed
