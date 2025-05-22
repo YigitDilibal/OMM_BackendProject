@@ -5,6 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import org.json.JSONObject;
 import utilities.API_Utilities.API_Methods;
@@ -23,18 +24,26 @@ public class SedaStep {
     }
 
     @And("The api user validates the {string}, {string}, {string}, {string}, {string}, {string} contents of the data in  response body")
-    public void theApiUserValidatesTheContentsOfTheDataInResponseBody(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5) {
-        response.then()
-                .assertThat()
-                .body("data.shop_list[0].shop_code", equalTo(arg0),
-                        "data.shop_list[0].shop_name", equalTo(arg1),
-                        "data.shop_list[0].country_code", equalTo(arg2),
-                        "data.shop_list[0].tax_allow", equalTo(arg3),
-                        "data.shop_list[0].tax_number", equalTo(arg4),
-                        "data.shop_list[0].contact_no", equalTo(arg5));
+    public void theApiUserValidatesTheContentsOfTheDataInResponseBody(String shopCode, String shopName, String countryCode,
+                                                                      String taxAllow, String taxNumber, String contactNo) {
+
+        ValidatableResponse validatableResponse = response.then();
+
+        validatableResponse
+                .body("data.shop_list[0].shop_code", equalTo(shopCode),
+                        "data.shop_list[0].shop_name", equalTo(shopName),
+                        "data.shop_list[0].country_code", equalTo(countryCode),
+                        "data.shop_list[0].tax_allow", equalTo(taxAllow),
+                        "data.shop_list[0].contact_no", equalTo(contactNo));
 
 
+        if (taxNumber == null || "null".equalsIgnoreCase(taxNumber.trim())) {
+            validatableResponse.body("data.shop_list[0].tax_number", nullValue());
+        } else {
+            validatableResponse.body("data.shop_list[0].tax_number", equalTo(taxNumber));
+        }
     }
+
 
 
 

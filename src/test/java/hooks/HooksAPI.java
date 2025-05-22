@@ -9,6 +9,7 @@ public class HooksAPI {
     public static RequestSpecification spec;
     static ConfigLoader configLoader = new ConfigLoader();
 
+
     public static void setUpApi(String userType) {
         String token;
         if (userType.equals("provider")) {
