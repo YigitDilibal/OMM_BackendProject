@@ -3,7 +3,7 @@ Feature: Database Testing
   Background: Database connectivity
     Given Database connection established
 
-
+@OMM-254
 Scenario: Update safety Password administrators
 
   # Enter a data entry in the administrators table.
@@ -17,7 +17,7 @@ And Database closed
 
 
 
-
+@OMM-255
 Scenario:total amount Group byProvider id
 
   # Calculate and verify the total amount value for each provider in book_service table.
@@ -28,7 +28,7 @@ Scenario:total amount Group byProvider id
 
 
 
-
+@OMM-256
 Scenario: Count messages
 
   # Verify the name of the person who sent the most messages
