@@ -14,6 +14,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 import static stepdefinitions.API_Stepdefinitions.jsonObjectRequest;
 import static stepdefinitions.API_Stepdefinitions.response;
+import static stepdefinitions.YigitStep.jsonMissingData;
 
 public class VarolStep {
     @And("The api user validates the {string}, {string}, {string}, {string}, {string}, {string}, {string} contents of the data in the response body.")
@@ -87,7 +88,7 @@ public class VarolStep {
 
     @Then("The api user prepares a post request body containing missing data to send to the api addBlogCategory endpoint.")
     public void the_api_user_prepares_a_post_request_body_containing_missing_data_to_send_to_the_api_add_blog_category_endpoint() {
-        jsonObjectRequest.put("name", "New Blog Category");
+        jsonMissingData.put("name", "New Blog Category");
     }
 
     @Then("The api user prepares a post request without any data to send to the api addBlogCategory endpoint.")
