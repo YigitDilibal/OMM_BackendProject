@@ -28,7 +28,7 @@ Feature: As a provider, I want to be able to create a new blog category record v
     And The api user verifies that the "response.response_message" information in the response body is "Name and description is required.".
 
 
-  Scenario: Verify that a POST request to /api/addBlogCategory without valid authorization and data returns status code 203
+  Scenario: Verify that a POST request to /api/addBlogCategory without valid authorization and no data returns status code 203
   and response_message “Name and description is required.”
 
     Given The api user constructs the base url with the "provider" token.
