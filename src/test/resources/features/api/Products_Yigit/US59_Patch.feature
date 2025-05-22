@@ -33,7 +33,7 @@ Feature: As a provider, I want to be able to update the information of the blog 
 
 
 
-  Scenario: Verify that a PATCH request to /api/addProduct with valid authorization without data returns status code 203
+  Scenario: Verify that a PATCH request to /api/editProduct with valid authorization without data returns status code 203
   and response_message “Add product failed, required fields empty.”.
 
     # When a PATCH request with valid authorization information and no correct (id) data is sent to the /api/editProduct/{id} endpoint, it must be
@@ -43,7 +43,7 @@ Feature: As a provider, I want to be able to update the information of the blog 
     When The api user sets "api/editProduct" path parameters with id taken from POST.
     And The api user sends a PATCH request with empty body and saves the returned response.
     Then The api user verifies that the status code is 203.
-    And The api user verifies that the "response.response_message" information in the response body is "No data for updated.".
+    And The api user verifies that the "response.response_message" information in the response body is "Add product failed, required fields empty.".
 
 
 
