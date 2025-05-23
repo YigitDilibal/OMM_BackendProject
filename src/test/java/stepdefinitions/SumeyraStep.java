@@ -4,6 +4,7 @@ import hooks.HooksAPI;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 import utilities.API_Utilities.API_Methods;
+import utilities.API_Utilities.Excel;
 
 import java.util.List;
 import java.util.Map;
@@ -124,19 +125,19 @@ public class SumeyraStep {
             {
 "firstname":"Sümeyra ERÖZ",
 "mobileno" :"3698521478965",
-"email":"mdame@gmail.com",
+"email":"smyra@gmail.com",
 "gender":"Female",
-"shop_id":26,
-"about_emp":"About Madame"
+"shop_id":15,
+"about_emp":"About Sumeyra"
 }
              */
 
         hashMapRequest.put("firstname", "Sümeyra ERÖZ");
-        hashMapRequest.put("mobileno", "3698521478965");
-        hashMapRequest.put("email", "mdame@gmail.com");
+        hashMapRequest.put("mobileno", "5056396329");
+        hashMapRequest.put("email", "smyra@gmail.com");
         hashMapRequest.put("gender", "Female");
-        hashMapRequest.put("shop_id", 26);
-        hashMapRequest.put("about_emp", "About Madame");
+        hashMapRequest.put("shop_id", 15);
+        hashMapRequest.put("about_emp", "About Sumeyra");
 
     }
 
@@ -216,6 +217,32 @@ public class SumeyraStep {
 
         lastStaffId = response.jsonPath().getString("response.data.id");
         System.out.println(lastStaffId);
+    }
+
+    @And("The api user sets {string} path parameters for confirmation of the GET response.")
+    public void theApiUserSetsPathParametersForConfirmationOfTheGETResponse(String arg0) {
+
+
+        String id = response.jsonPath().getString("data.added_staff_id");
+
+        String pathParam = arg0+"/"+id;
+
+        API_Methods.pathParam(pathParam);
+
+        Excel.isimAltindakiDegeriGuncelle("Sumeyra",Integer.parseInt(id));
+
+    }
+
+    @And("The api user sets {string} path parameters for staffs with id taken from POST.")
+    public void theApiUserSetsPathParametersForStaffsWithIdTakenFromPOST(String arg0) {
+
+        String id = Excel.isimAltindakiDegeriGetir("Sumeyra") + "";
+
+        String pathParam = arg0+"/"+id;
+
+        API_Methods.pathParam(pathParam);
+
+
     }
 }
 
