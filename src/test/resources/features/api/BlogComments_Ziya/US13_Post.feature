@@ -1,3 +1,4 @@
+@APItest
 Feature: Creating a New Blog Comment via API
 
   Scenario: Testing the success (200 + 'Blog Comment added successfully') of a request to add a blog comment with valid auth and required fields (post_id, name, email, comment).

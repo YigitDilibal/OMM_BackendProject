@@ -1,3 +1,4 @@
+@APItest
 Feature: Access to Blog Comment Details via API.
 
   Scenario Outline: Verify that a GET request to api/blogComment/{id} with valid authorization and correct id returns status

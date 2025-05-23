@@ -1,3 +1,4 @@
+@APItest
 Feature: As a provider, I should be able to access the detailed information of the blog category with the specified id number via the API connection.
 
 

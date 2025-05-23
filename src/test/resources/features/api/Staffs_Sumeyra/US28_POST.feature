@@ -1,3 +1,4 @@
+@APItest
 Feature: As a provider, I want to be able to create a new staff record via API connection.
 
   # When a POST body with valid authorization information and correct data (firstname, mobileno, email, gender, dob, shop_id, about_emp) is sent to /api/addStaff endpoint,

@@ -1,3 +1,4 @@
+@APItest
 Feature: As a provider, I want to be able to delete blog information with the specified id number via API connection.
 
   Scenario: Verify that a DELETE request to /api/deleteBlog/{id} with valid authorization and correct id returns status

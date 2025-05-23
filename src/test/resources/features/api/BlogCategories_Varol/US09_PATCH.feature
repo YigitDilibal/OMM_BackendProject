@@ -1,3 +1,4 @@
+@APItest
 Feature: As a provider, I want to be able to update the blog category information with the specified id number via API connection.
 
   Scenario: Verify that a PATCH request to /api/editBlogCategory/{id} with valid authorization and correct data returns status code

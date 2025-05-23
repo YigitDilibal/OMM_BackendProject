@@ -1,3 +1,4 @@
+@APItest
 Feature: As a provider, I want to be able to update the information of the staff with the specified id number via API connection.
 
   # When sending a PATCH body with valid authorization information and correct (id) and correct data (firstname, mobileno, email, gender, shop_id, about_emp) to the /api/editStaff/{id} endpoint,

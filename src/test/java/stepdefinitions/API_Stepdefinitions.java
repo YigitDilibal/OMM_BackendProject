@@ -129,7 +129,7 @@ public class API_Stepdefinitions {
                 .spec(HooksAPI.spec)
                 .contentType(ContentType.JSON)
                 .when()
-                .body(jsonMissingData.toString())
+                .body(jsonObjectRequest.toString())
                 .post(API_Methods.fullPath);
 
         response.prettyPrint();

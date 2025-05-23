@@ -1,4 +1,4 @@
-
+@APItest
 Feature: As a provider, I want to be able to delete staff information with the specified id number via API connection.
 
   # When a DELETE request is sent to the /api/deleteStaff/{id} endpoint with valid authorization information and the correct

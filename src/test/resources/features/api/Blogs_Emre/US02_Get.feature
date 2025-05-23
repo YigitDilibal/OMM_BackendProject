@@ -1,3 +1,4 @@
+@APItest
 Feature: As a provider, I should be able to access the detailed information of the blog with the specified
   id number through the API connection.
 

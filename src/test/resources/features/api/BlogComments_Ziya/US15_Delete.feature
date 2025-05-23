@@ -1,3 +1,4 @@
+@APItest
 Feature: Deleting a Blog Comment via API
 
   Scenario: DELETE /api/deleteBlogComment/{id} with valid authorization and correct id returns 200,
