@@ -18,6 +18,7 @@ import java.util.HashMap;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
+import static stepdefinitions.YigitStep.jsonMissingData;
 
 public class API_Stepdefinitions {
     static Response response;
@@ -46,7 +47,7 @@ public class API_Stepdefinitions {
                 .when()
                 .get(API_Methods.fullPath);
 
-        // System.out.println(response.prettyPrint());
+        System.out.println(response.prettyPrint());
 
     }
 
@@ -128,10 +129,10 @@ public class API_Stepdefinitions {
                 .spec(HooksAPI.spec)
                 .contentType(ContentType.JSON)
                 .when()
-                .body(jsonObjectRequest.toString())
+                .body(jsonMissingData.toString())
                 .post(API_Methods.fullPath);
 
-        //response.prettyPrint();
+        response.prettyPrint();
     }
 
     @Given("The api user prepares a post request body containing missing data to send to the api addBlog endpoint.")
@@ -169,7 +170,7 @@ public class API_Stepdefinitions {
                 .body(jsonObjectRequest.toString())
                 .patch(API_Methods.fullPath);
 
-         // response.prettyPrint();
+         response.prettyPrint();
     }
 
     @Given("The api user verifies that the {string} information in the response body is the same as the id path parameter in the endpoint.")
@@ -207,7 +208,9 @@ public class API_Stepdefinitions {
                 .spec(HooksAPI.spec)
                 .when()
                 .delete(API_Methods.fullPath);
-        response.prettyPrint();
+      
+        //response.prettyPrint();
+
     }
 
 

@@ -24,17 +24,44 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="c0e4f402-14fc-40cf-9661-0895fcf8bdb0">
-      <console name="Project_Database" type="STANDARD" schema="u201212290_onlinemasterqa" session="Main"><![CDATA[select * from bank_account;]]></console>
+      <console name="Project_Database" type="STANDARD" schema="u201212290_onlinemasterqa" session="Main"><![CDATA[select * from bank_account;
+
+SELECT shop_id, COUNT(*) AS service_count
+FROM u201212290_onlinemasterqa.book_service
+GROUP BY shop_id
+ORDER BY service_count DESC
+LIMIT 1;
+
+
+SELECT name, COUNT(*) AS num_messages
+FROM u201212290_onlinemasterqa.contact_form_details
+GROUP BY name
+ORDER BY num_messages DESC
+LIMIT 1;
+
+SELECT id, name, email, message, created_at
+FROM u201212290_onlinemasterqa.contact_form_details;
+
+SELECT id, name, email, message, created_at
+FROM u201212290_onlinemasterqa.contact_form_details
+#WHERE message LIKE '%servis%';]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="c0e4f402-14fc-40cf-9661-0895fcf8bdb0" object-ref="consoles/Project_Database" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="c0e4f402-14fc-40cf-9661-0895fcf8bdb0" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="c0e4f402-14fc-40cf-9661-0895fcf8bdb0" dataset="u201212290_onlinemasterqa.service_coupons" active-filter-id="" />
+    <filter-actions connection-id="c0e4f402-14fc-40cf-9661-0895fcf8bdb0" dataset="u201212290_onlinemasterqa.abuse_reports" active-filter-id="" />
+    <filter-actions connection-id="c0e4f402-14fc-40cf-9661-0895fcf8bdb0" dataset="u201212290_onlinemasterqa.bank_account" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
@@ -69,7 +96,7 @@
           <token-type value="" />
           <token-config-file value="" />
           <token-profile value="" />
-          <session-user value="u201212290_onlineuserqa@176.219.55.131" />
+          <session-user value="u201212290_onlineuserqa@95.65.139.218" />
         </database>
         <properties>
           <auto-commit value="false" />
@@ -288,12 +315,19 @@
           <content-type name="DTD" enabled="true" />
           <content-type name="HTML" enabled="true" />
           <content-type name="XHTML" enabled="true" />
+          <content-type name="CSS" enabled="true" />
           <content-type name="Java" enabled="true" />
           <content-type name="SQL" enabled="true" />
           <content-type name="PL/SQL" enabled="true" />
+          <content-type name="JPA QL" enabled="true" />
+          <content-type name="JavaScript" enabled="true" />
           <content-type name="JSON" enabled="true" />
           <content-type name="JSON5" enabled="true" />
+          <content-type name="JSP" enabled="true" />
+          <content-type name="JSPx" enabled="true" />
           <content-type name="Groovy" enabled="true" />
+          <content-type name="FTL" enabled="true" />
+          <content-type name="VTL" enabled="true" />
           <content-type name="YAML" enabled="true" />
           <content-type name="Manifest" enabled="true" />
         </content-types>

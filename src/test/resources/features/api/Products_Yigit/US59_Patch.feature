@@ -33,7 +33,7 @@ Feature: As a provider, I want to be able to update the information of the blog 
 
 
 
-  Scenario: Verify that a PATCH request to /api/addProduct with valid authorization without data returns status code 203
+  Scenario: Verify that a PATCH request to /api/editProduct with valid authorization without data returns status code 203
   and response_message “Add product failed, required fields empty.”.
 
     # When a PATCH request with valid authorization information and no correct (id) data is sent to the /api/editProduct/{id} endpoint, it must be

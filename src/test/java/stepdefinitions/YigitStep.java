@@ -1,7 +1,9 @@
 package stepdefinitions;
 
+import helperDB.CommonData;
 import hooks.HooksAPI;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.http.ContentType;
@@ -9,8 +11,15 @@ import org.json.JSONObject;
 import utilities.API_Utilities.API_Methods;
 import utilities.API_Utilities.Excel;
 
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static helperDB.JDBC_Structure_Methods.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static stepdefinitions.API_Stepdefinitions.*;
 
 
@@ -18,6 +27,10 @@ import static stepdefinitions.API_Stepdefinitions.*;
 public class YigitStep {
 
     static JSONObject jsonMissingData = new JSONObject();
+    CommonData data = new CommonData();
+
+    public YigitStep() throws SQLException {
+    }
 
     @And("The api user validates the {string}, {string}, {string}, {string}, {string}, {string} contents of the data in the response body.")
     public void theApiUserValidatesTheContentsOfTheDataInTheResponseBody(String arg0, String arg1, String arg2, String arg3, String arg4, String arg5) {
@@ -218,4 +231,47 @@ public class YigitStep {
 
 
     }
+
+    private Connection connection;
+    private Statement statement;
+    private ResultSet resultSet;
+
+    @Given("I connect to the database")
+    public void connectToDatabase() throws SQLException {
+        String url = "jdbc:mysql://195.35.59.18/u201212290_onlinemasterqa"; // PostgreSQL örneği
+        String user = "u201212290_onlineuserqa";
+        String password = "Fi8]K0dv*7g";
+        connection = DriverManager.getConnection(url, user, password);
+        statement = connection.createStatement();
+    }
+
+    @When("I insert 4 random bank_account records with various status")
+    public void insertRandomRecords() throws SQLException {
+        String insertSQL = """
+            INSERT INTO bank_account (user_id, user_name, acc_no, bank_name, bank_addr, ifsc_code, pancard_no, paypal_account, paypal_email_id, status) VALUES
+            (901, 'Alice Brown', '456789123456', 'Chase Bank', '101 Main St, NY', 'CHASE00001', 'PQRS1234H', 'alice_brown', 'alice.brown@example.com', 'active'),
+            (902, 'Bob Green', '987654321098', 'PNC Bank', '202 Broad Ave, TX', 'PNC0000002', 'LMNO5678J', 'bob_green', 'bob.green@example.com', 'inactive'),
+            (903, 'Carol Black', '654321987654', 'TD Bank', '303 River Rd, NJ', 'TD00000003', 'EFGH9101K', 'carol_black', 'carol.black@example.com', 'pending'),
+            (904, 'David White', '321098765432', 'US Bank', '404 Hilltop Dr, CA', 'USB0000004', 'WXYZ3456L', 'david_white', 'david.white@example.com', 'active');
+        """;
+        statement.executeUpdate(insertSQL);
+    }
+
+    @Then("I should be able to fetch and validate all active bank_account records")
+    public void validateActiveAccounts() throws SQLException {
+        String selectSQL = "SELECT * FROM bank_account WHERE status = 'active'";
+        resultSet = statement.executeQuery(selectSQL);
+
+        List<String> activeUsers = new ArrayList<>();
+        while (resultSet.next()) {
+            String status = resultSet.getString("status");
+            assertEquals("active", status); // Doğrulama
+            activeUsers.add(resultSet.getString("user_name"));
+        }
+
+        System.out.println("Active users: " + activeUsers);
+        assertTrue("At least one active account should exist", activeUsers.size() > 0);
+    }
+
+
 }
