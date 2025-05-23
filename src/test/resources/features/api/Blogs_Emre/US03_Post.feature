@@ -29,9 +29,9 @@ Feature: As a provider, I want to be able to create a new blog record via API co
     # Api kullanicisi api addBlog endpointine gondermek icin eksik datalar içeren bir post request body hazirlar
     * The api user sends a POST request and saves the returned response.
     # Api kullanicisi POST request gonderir ve donen responsei kaydeder
-    * The api user verifies that the status code is 200.
+    * The api user verifies that the status code is 203.
     # Api kullanicisi status codeun 203 oldugunu dogrular
-    * The api user verifies that the "response.response_message" information in the response body is "Blog added successfully".
+    * The api user verifies that the "response.response_message" information in the response body is "Title, summary, content and category_id is required.".
     # Api kullanicisi response bodydeki response_message bilgisinin "Title, summary, content and category_id is required." oldugunu dogrular
 
 
@@ -48,7 +48,7 @@ Feature: As a provider, I want to be able to create a new blog record via API co
     # Api kullanicisi POST request gonderir ve donen responsei kaydeder
     * The api user verifies that the status code is 203.
     # Api kullanicisi status codeun 203 oldugunu dogrular
-    * The api user verifies that the "response.response_message" information in the response body is "Blog added successfully".
+    * The api user verifies that the "response.response_message" information in the response body is "Title, summary, content and category_id is required.".
     # Api kullanicisi response bodydeki response_message bilgisinin "Title, summary, content and category_id is required." oldugunu dogrular
 
 
