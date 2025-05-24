@@ -138,61 +138,6 @@ public class Manage {
     private String US18_messages_like_servis="SELECT id, name, email, message, created_at\n" +
             "FROM u201212290_onlinemasterqa.contact_form_details\n" +
             "WHERE message LIKE 'fffgg';";
-    /**
-     * US_19
-     **/
-    private String US19_insert_contact_reply = "INSERT INTO u201212290_onlinemasterqa.contact_reply (contact_id, name, reply, created_at)\n" +
-            "SELECT id AS contact_id, name, \n" +
-            "       CASE\n" +
-            "           WHEN message LIKE '%servis%' THEN 'Servis oluşturma hakkında size nasıl yardımcı olabiliriz?'\n" +
-            "           ELSE 'Mesajınızı aldık ve en kısa sürede geri döneceğiz.'\n" +
-            "       END AS reply, \n" +
-            "       NOW() AS created_at\n" +
-            "FROM u201212290_onlinemasterqa.contact_form_details;";
-    /**
-     * US_20
-     **/
-    private String US20_year_message_count="SELECT YEAR(created_at) AS year, COUNT(*) AS message_count\n" +
-            "FROM u201212290_onlinemasterqa.contact_form_details\n" +
-            "GROUP BY YEAR(created_at)\n" +
-            "ORDER BY year DESC;";
-    /**
-     * US_21
-     **/
-    private String US21_insert_bulk_data_deposit_details="INSERT INTO u201212290_onlinemasterqa.deposit_details " +
-            "(provider_id, book_id, order_id, amount, deposit_date, deposit_status, created_at, deposit_completed_at) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-    /**
-     * US_22
-     **/
-    private String US22_footer_menu="SELECT DATE_FORMAT(created_date, '%Y-%m') AS month, COUNT(*) AS num_menus\n" +
-            "FROM u201212290_onlinemasterqa.footer_menu\n" +
-            "GROUP BY month\n" +
-            "ORDER BY month;";
-    /**
-     * US_23
-     **/
-    private String US23_forget_password_3="SELECT id, user_id, email, FROM_UNIXTIME(endtime) AS endtime_formatted\n" +
-            "FROM u201212290_onlinemasterqa.forget_password_det\n" +
-            "ORDER BY endtime DESC\n" +
-            "LIMIT 3;";
-    private String US24_rating_review="SELECT DATE(created) AS review_date, AVG(rating) AS average_rating\n" +
-            "FROM  u201212290_onlinemasterqa.rating_review\n" +
-            "WHERE created >= CURDATE() - INTERVAL 15 DAY\n" +
-            "GROUP BY review_date\n" +
-            "ORDER BY review_date DESC;";
-    /**
-     * US_25
-     **/
-    private String US25_user_limit_count_service_coupons = "SELECT * FROM u201212290_onlinemasterqa.service_coupons WHERE user_limit_count >= user_limit;";
-
-
-    /**
-     * US_27
-     **/
-    private String US27_user_incomplate_data_insert = "INSERT INTO u201212290_onlinemasterqa.users (mobileno, country_code, currency_code, status, usertype)\n" +
-            "VALUES (?, ?, ?, ?, ?)";
 
 
 }

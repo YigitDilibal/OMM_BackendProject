@@ -106,9 +106,9 @@ public class Excel {
             throw new RuntimeException("Excel dosyası yazılamadı.");
         } finally {
             try {
+                if (workbook != null) workbook.close(); // önce workbook'u kapat
                 if (fileInputStream != null) fileInputStream.close();
                 if (fileOutputStream != null) fileOutputStream.close();
-                if (workbook != null) workbook.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

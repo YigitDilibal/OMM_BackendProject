@@ -440,55 +440,20 @@ public class DB_Stepdefinitions extends Manage {
     }
 
 
-
-
-
-    /**
-     * US19
-     ****/
-    @Given("Prepare query to insert data entry into the contact_reply table")
-    public void prepare_query_to_insert_data_entry_into_the_contact_reply_table() throws SQLException {
-        query = getUS19_insert_contact_reply();
-        // Statement ile insert işlemi bize kac satırın etkilendiğini döndürür.
-        rowCount = getStatement().executeUpdate(query);
-    }
-
     @Given("Verify that {int} added data to the table")
     public void verify_that_added_data_to_the_table(int row) {
         // Sonuç kümesinde satır varsa, bir girişin eklendiğini doğrula
         assertEquals("Giriş eklenemedi.", row, rowCount);
     }
-    @Given("prepare query to  into the contact_reply table")
-    public void prepare_query_to_into_the_contact_reply_table() throws SQLException {
-        query = getUS20_year_message_count();
-        resultSet=getStatement().executeQuery(query);
-    }
+
     @Given("Verify that {int} and {int} message count  data to the table")
     public void verify_that_and_message_count_data_to_the_table(int year, int message_count) throws SQLException {
         resultSet.next();
         assertEquals(year,resultSet.getInt("year"));
         assertEquals(message_count,resultSet.getInt("message_count"));
     }
-    /** US21  */
-    @Given("Prepare query to insert {int} data entry into the deposit_details table")
-    public void prepare_query_to_insert_data_entry_into_the_deposit_details_table(Integer numberofrecords) {
-        query=getUS21_insert_bulk_data_deposit_details();
-        preparedStatement=getPraperedStatement(query);
-        depositDetails inserter = new depositDetails();
-        try {
-           result= insertFakeData(numberofrecords);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
 
 
-    }
-    /** US22   */
-    @Given("Prepare query footer update query by month of the year")
-    public void prepare_query_footer_update_query_by_month_of_the_year() throws SQLException {
-        query=getUS22_footer_menu();
-        resultSet=getStatement().executeQuery(query);
-    }
     @Given("Verify results are obtained in the footer_menu table")
     public void verify_results_are_obtained_in_the_footer_menu_table() throws SQLException {
         while (resultSet.next()) {
@@ -498,12 +463,7 @@ public class DB_Stepdefinitions extends Manage {
             System.out.printf("Month: %s, Number of Menus: %d%n", month, numMenus);
         }
     }
-    /** US23  */
-    @Given("The last {int} password reset requests are retrieved")
-    public void the_last_password_reset_requests_are_retrieved(Integer int1) throws SQLException {
-        query=getUS23_forget_password_3();
-        resultSet=getStatement().executeQuery(query);
-    }
+
 
 
     @Given("the requests should be displayed")
@@ -522,11 +482,7 @@ public class DB_Stepdefinitions extends Manage {
         }
     }
 
-    @Given("the average rating change in the last fiveteen days is calculated")
-    public void calculateAverageRatingChange() throws SQLException {
-    query=getUS24_rating_review();
-    resultSet=getStatement().executeQuery(query);
-    }
+
     @Given("the calculated average ratings should match the expected values")
     public void verifyAverageRatingChange() throws SQLException {
         actualRatings = new HashMap<>();
@@ -548,15 +504,7 @@ public class DB_Stepdefinitions extends Manage {
         }
     }
 
-    /**
-     * US25
-     ****/
 
-    @Given("prepare query to  into the service_coupons table")
-    public void prepare_query_to_into_the_service_coupons_table() throws SQLException {
-        query = getUS25_user_limit_count_service_coupons();
-        resultSet = getStatement().executeQuery(query);
-    }
 
     @Given("Verify results are obtained in the table")
     public void verify_results_are_obtained_in_the_table() {
@@ -596,28 +544,6 @@ public class DB_Stepdefinitions extends Manage {
     public void an_error_should_be_thrown_for_the_invalid_data() {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
-    }
-
-
-
-    /**
-     * US27
-     */
-
-    // (mobileno, country_code, currency_code, status, usertype)
-    @Given("prepare query to  into the users table")
-    public void prepare_query_to_into_the_users_table() throws SQLException {
-        query = getUS27_user_incomplate_data_insert();
-        try {
-            preparedStatement = getPraperedStatement(query);
-            preparedStatement.setString(1, data.getMobileNo());
-            preparedStatement.setString(2, data.getCountryCode());
-            preparedStatement.setString(3, data.getCurrencyCode());
-            preparedStatement.setInt(4, data.getStatus());
-            preparedStatement.setInt(5, data.getUsertype());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     @Given("I attempt to insert the data into the users table")
