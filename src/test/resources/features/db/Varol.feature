@@ -1,3 +1,4 @@
+@DB
 Feature: Database Testing
 
   Background: Database connectivity

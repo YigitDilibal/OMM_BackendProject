@@ -1,3 +1,4 @@
+@DB
 Feature: Bank Account Status Insert and Validation
 
 
