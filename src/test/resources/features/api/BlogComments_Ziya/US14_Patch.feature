@@ -1,3 +1,4 @@
+@APItest
 Feature: Update Blog Comment via API
 
   Scenario: Verify that a PATCH request to /api/editBlogComment/{id} with valid authorization and correct data returns status code

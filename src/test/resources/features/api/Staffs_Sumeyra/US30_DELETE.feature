@@ -1,4 +1,4 @@
-
+@APItest
 Feature: As a provider, I want to be able to delete staff information with the specified id number via API connection.
 
   # When a DELETE request is sent to the /api/deleteStaff/{id} endpoint with valid authorization information and the correct
@@ -7,16 +7,26 @@ Feature: As a provider, I want to be able to delete staff information with the s
   # Verify that the deleted_staff_id in the response body returned from the /api/deleteStaff/{id} endpoint
   # is the same as the id path parameter in the /api/deleteStaff/{id} endpoint.
 
+   #  "The deletion of the staff record requested to be deleted from the API must be verified from the API.
+   #   (With the deleted_staff_id returned in the response body, a GET request can be sent to the /api/staff-detail/{id} endpoint
+   #   to verify that the record has been deleted.)"
 
   Scenario: Verify that a DELETE request to /api/deleteStaff/{id} with valid authorization and correct id returns status
   code 200, response_message “Staff deleted successfully”.
 
     Given The api user constructs the base url with the "provider" token.
-    And The api user sets "api/deleteStaff/191" path parameters.
+    And The api user sets "api/deleteStaff" path parameters for staffs with id taken from POST.
     And The api user sends a DELETE request and saves the returned response.
     When The api user verifies that the status code is 200.
     Then The api user verifies that the "response.response_message" information in the response body is "Staff deleted successfully".
+
     Then The api user verifies that the "data.deleted_staff_id" information in the response body is the same as the id path parameter in the endpoint.
+
+    Given The api user constructs the base url with the "provider" token.
+    Then The api user sets "api/staff-detail" path parameters with id taken from POST.
+    And The api user sends a GET request and saves the returned response.
+    When The api user verifies that the status code is 203.
+    Then The api user verifies that the "response.response_message" information in the response body is "No Details found".
 
 
   # When a DELETE request is sent to the endpoint /api/deleteStaff/{id} without valid authorization information and (id),
@@ -60,26 +70,6 @@ Feature: As a provider, I want to be able to delete staff information with the s
     Then The api user verifies that the "response.response_message" information in the response body is "Invalid token or token missing".
 
 
-
-    #  "The deletion of the staff record requested to be deleted from the API must be verified from the API.
-    #   (With the deleted_staff_id returned in the response body, a GET request can be sent to the /api/staff-detail/{id} endpoint
-    #   to verify that the record has been deleted.)"
-
-  Scenario: Verify that the deleted blog is successfully removed via API by sending a GET request to /api/blog/{id}
-  using the deleted_blog_id returned in the DELETE response.
-
-
-    Given The api user constructs the base url with the "provider" token.
-    And The api user sets "api/deleteStaff/194" path parameters.
-    And The api user sends a DELETE request and saves the returned response.
-    When The api user verifies that the status code is 200.
-    Then The api user verifies that the "response.response_message" information in the response body is "Staff deleted successfully".
-    Then The api user verifies that the "data.deleted_staff_id" information in the response body is the same as the id path parameter in the endpoint.
-
-    Given The api user constructs the base url with the "provider" token.
-    And The api user sets "api/staff-detail/194" path parameters.
-    Then The api user sends a GET request and saves the returned response.
-    Then The api user verifies that the status code is 200.
 
 
 

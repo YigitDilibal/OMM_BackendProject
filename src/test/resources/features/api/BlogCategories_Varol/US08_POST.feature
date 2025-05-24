@@ -1,3 +1,4 @@
+@APItest
 Feature: As a provider, I want to be able to create a new blog category record via API connection.
 
   Scenario: Verify that a POST request to /api/addBlogCategory with valid authorization and correct data returns status code 200

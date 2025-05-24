@@ -1,18 +1,31 @@
+@APItest
 Feature: As a provider, I want to be able to update the information of the staff with the specified id number via API connection.
 
   # When sending a PATCH body with valid authorization information and correct (id) and correct data (firstname, mobileno, email, gender, shop_id, about_emp) to the /api/editStaff/{id} endpoint,
   # it should be verified that the status code returned is 200 and the response_message in the response body is “Staff updated successfully”.
 
+  # "The staff record that is requested to be updated from the API must be verified that it has been updated from the API.
+  # (With the update_staff_id returned in the response body, a GET request can be sent to the /api/staff-detail/{id} endpoint
+  # to verify that the record has been updated.)"
+
   Scenario: Verify that a PATCH request to /api/editStaff/{id} with valid authorization and correct data returns status code
   200, response_message “Staff updated successfully”, and that updated_blog_id in the response matches the path parameter id.
 
     Given The api user constructs the base url with the "provider" token.
-    And The api user sets "api/editStaff/173" path parameters.
+    And The api user sets "api/editStaff" path parameters for staffs with id taken from POST.
     And The api user prepares a patch request body to send to the api editStaff endpoint
     When The api user sends a PATCH request and saves the returned response.
     Then The api user verifies that the status code is 200.
     And The api user verifies that the "response.response_message" information in the response body is "Staff updated successfully".
+
     Then The api user verifies that the "data.update_staff_id" information in the response body is the same as the id path parameter in the endpoint.
+
+    Given The api user constructs the base url with the "provider" token.
+    Then The api user sets "api/staff-detail" path parameters with id taken from POST.
+    And The api user sends a GET request and saves the returned response.
+    Then The api user verifies that the status code is 200.
+    And The api user verifies that the "response.response_message" information in the response body is "Staff Details".
+
 
     # When sending a PATCH body with valid authorization information and correct (id) and correct data (firstname, mobileno) to the /api/editStaff/{id} endpoint,
     # it should be verified that the status code returned is 200 and the response_message in the response body is “Staff updated successfully”.
@@ -94,24 +107,7 @@ Feature: As a provider, I want to be able to update the information of the staff
     And The api user sets "api/editStaff/173" path parameters.
     And The api user prepares a part of patch request body to send to the api editStaff endpoint
     When The api user sends a PATCH request and saves the returned response.
-    And The api user verifies that the status code is 200.
+    And The api user verifies that the "response.response_code" information in the response body is "200".
     And The api user verifies that the "response.response_message" information in the response body is "Staff updated successfully".
     Then The api user verifies that the "data.update_staff_id" information in the response body is the same as the id path parameter in the endpoint.
 
-
-    # "The staff record that is requested to be updated from the API must be verified that it has been updated from the API.
-    # (With the update_staff_id returned in the response body, a GET request can be sent to the /api/staff-detail/{id} endpoint
-    # to verify that the record has been updated.)"
-
-
-  Scenario Outline: Verify that the newly created staff via /api/myStaffs is successfully created by sending a GET request
-  to /api/staff-detail/{id} using the added_blog_id returned in the POST response.
-
-    Given The api user constructs the base url with the "provider" token.
-    And The api user sets "api/staff-detail/<id>" path parameters.
-    And The api user sends a GET request and saves the returned response.
-    Then The api user verifies that the status code is 200.
-
-    Examples:
-      | id |
-      | 187 |

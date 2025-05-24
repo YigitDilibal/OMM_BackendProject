@@ -1,3 +1,4 @@
+@APItest
 Feature: As a provider, I want to be able to update the information of the blog with the specified id number
   via API connection.
 

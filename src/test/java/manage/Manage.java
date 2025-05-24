@@ -137,7 +137,7 @@ public class Manage {
             "ORDER BY num_messages DESC Limit 1;\n";
     private String US18_messages_like_servis="SELECT id, name, email, message, created_at\n" +
             "FROM u201212290_onlinemasterqa.contact_form_details\n" +
-            "WHERE message LIKE '%servis%';";
+            "WHERE message LIKE 'fffgg';";
     /**
      * US_19
      **/

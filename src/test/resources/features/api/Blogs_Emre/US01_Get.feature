@@ -1,3 +1,4 @@
+@APItest
 Feature: As a provider I want to be able to access blogs via API connection.
 
   Scenario Outline: Verify that a GET request to /api/blogs with valid authorization returns status code 200,

@@ -1,3 +1,4 @@
+@APItest
 Feature: As a provider, I want to be able to create a new staff record via API connection.
 
   # When a POST body with valid authorization information and correct data (firstname, mobileno, email, gender, dob, shop_id, about_emp) is sent to /api/addStaff endpoint,
@@ -57,7 +58,7 @@ Feature: As a provider, I want to be able to create a new staff record via API c
 
     # NEW STAFF ADDED !!!!
 
-  Scenario Outline: Verify that the newly created blog via /api/addStaff is successfully created by sending a GET request
+  Scenario: Verify that the newly created blog via /api/addStaff is successfully created by sending a GET request
   to /api/staff-detail/{id} using the added_staff_id returned in the POST response.
 
     Given The api user constructs the base url with the "provider" token.
@@ -68,11 +69,6 @@ Feature: As a provider, I want to be able to create a new staff record via API c
     Then The api user verifies that the "response.response_message" information in the response body is "Staff added successfully".
 
     Given The api user constructs the base url with the "provider" token.
-    And The api user sets "api/staff-detail/<id>" path parameters.
+    And The api user sets "api/staff-detail" path parameters for confirmation of the GET response.
     And The api user sends a GET request and saves the returned response.
     Then The api user verifies that the status code is 200.
-    Then The api user verifies that the "data.update_staff_id" information in the response body is the same as the id path parameter in the endpoint.
-
-    Examples:
-      | id |
-      | 177 |
